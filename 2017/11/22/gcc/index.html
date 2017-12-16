@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>GCC编译过程 | 和你谈情怀</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="BlackSir -- 算法,Linux,Python" />
+  
+
+  <meta name="description" content="GCC (GNU编译器套件)gcc的编译流程  预处理（Pre-Processing） 编译    （Compiling） 汇编    （Assembling） 链接    （Linking）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCC编译过程">
+<meta property="og:url" content="http://blacksir.cn/2017/11/22/gcc/index.html">
+<meta property="og:site_name" content="和你谈情怀">
+<meta property="og:description" content="GCC (GNU编译器套件)gcc的编译流程  预处理（Pre-Processing） 编译    （Compiling） 汇编    （Assembling） 链接    （Linking）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-14T09:59:31.095Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GCC编译过程">
+<meta name="twitter:description" content="GCC (GNU编译器套件)gcc的编译流程  预处理（Pre-Processing） 编译    （Compiling） 汇编    （Assembling） 链接    （Linking）">
+
+  
+
+  
+    <link rel="icon" href="/Siri.jpg">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#GCC-GNU编译器套件"><span class="toc-text"><a href="#GCC-GNU&#x7F16;&#x8BD1;&#x5668;&#x5957;&#x4EF6;" class="headerlink" title="GCC (GNU&#x7F16;&#x8BD1;&#x5668;&#x5957;&#x4EF6;)"></a><a href="https://baike.baidu.com/item/gcc/17570?fr=aladdin" target="_blank" rel="noopener">GCC (GNU&#x7F16;&#x8BD1;&#x5668;&#x5957;&#x4EF6;)</a></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预处理"><span class="toc-text"><a href="#&#x9884;&#x5904;&#x7406;" class="headerlink" title="&#x9884;&#x5904;&#x7406;"></a>&#x9884;&#x5904;&#x7406;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译"><span class="toc-text"><a href="#&#x7F16;&#x8BD1;" class="headerlink" title="&#x7F16;&#x8BD1;"></a>&#x7F16;&#x8BD1;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#汇编"><span class="toc-text"><a href="#&#x6C47;&#x7F16;" class="headerlink" title="&#x6C47;&#x7F16;"></a>&#x6C47;&#x7F16;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链接"><span class="toc-text"><a href="#&#x94FE;&#x63A5;" class="headerlink" title="&#x94FE;&#x63A5;"></a>&#x94FE;&#x63A5;</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-gcc" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">GCC编译过程</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.11.22</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>BlackSir</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-C/">C/C++</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="GCC-GNU编译器套件"><a href="#GCC-GNU编译器套件" class="headerlink" title="GCC (GNU编译器套件)"></a><a href="https://baike.baidu.com/item/gcc/17570?fr=aladdin" target="_blank" rel="noopener">GCC (GNU编译器套件)</a></h3><p>gcc的编译流程</p>
+<ul>
+<li>预处理（Pre-Processing）</li>
+<li>编译    （Compiling）</li>
+<li>汇编    （Assembling）</li>
+<li>链接    （Linking）</li>
+</ul>
+<a id="more"></a>
+<p>gcc常用参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_98_243_centos ~]<span class="comment"># gcc --h</span></span><br><span class="line">用法：gcc [选项] 文件...</span><br><span class="line">选项：</span><br><span class="line">-E                       仅作预处理，不进行编译、汇编和链接</span><br><span class="line">-S                       编译到汇编语言，不进行汇编和链接</span><br><span class="line">-c                       编译、汇编到目标代码，不进行链接</span><br><span class="line">-o &lt;文件&gt;                输出到 &lt;文件&gt;</span><br><span class="line">-x &lt;语言&gt;                指定其后输入文件的语言</span><br><span class="line">                        允许的语言包括：c c++ assembler none</span><br><span class="line">                       ‘none’意味着恢复默认行为，即根据文件的扩展名猜测</span><br><span class="line">                       源文件的语言</span><br><span class="line"></span><br><span class="line">以 -g、-f、-m、-O、-W 或 --param 开头的选项将由 gcc 自动传递给其调用的</span><br><span class="line">不同子进程。若要向这些进程传递其他选项，必须使用 -W&lt;字母&gt; 选项。</span><br></pre></td></tr></table></figure>
+<p>c语言源代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_98_243_centos ~]<span class="comment"># nl blacksir.c</span></span><br><span class="line">1	<span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line">2	int main()</span><br><span class="line">3	&#123;</span><br><span class="line">4		<span class="built_in">printf</span>(<span class="string">"Hello BlackSir.cn\n"</span>);</span><br><span class="line">5		<span class="built_in">return</span> 0;</span><br><span class="line">6	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><p>将代码中的stdio.h编译进来，插入到源程序的前面。</p>
+<p>tail命令打印出blacksir.i文件的倒数十行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_98_243_centos ~]<span class="comment"># gcc -E blacksir.c -o blacksir.i </span></span><br><span class="line">[root@VM_98_243_centos ~]<span class="comment"># tail -n 10 blacksir.i</span></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">extern void funlockfile (FILE *__stream) __attribute__ ((__nothrow__ , __leaf__));</span><br><span class="line"><span class="comment"># 943 "/usr/include/stdio.h" 3 4</span></span><br><span class="line"><span class="comment"># 2 "blacksir.c" 2</span></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"Hello BlackSir.cn\n"</span>);</span><br><span class="line"><span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>检查代码规范性，是否有语法错误，检查完毕后gcc把代码翻译成汇编语言。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_98_243_centos ~]<span class="comment"># gcc -S blacksir.i -o blacksir.s</span></span><br><span class="line">[root@VM_98_243_centos ~]<span class="comment"># nl blacksir.s</span></span><br><span class="line"> 1		.file	<span class="string">"blacksir.c"</span></span><br><span class="line"> 2		.section	.rodata</span><br><span class="line"> 3	.LC0:</span><br><span class="line"> 4		.string	<span class="string">"Hello BlackSir.cn"</span></span><br><span class="line"> 5		.text</span><br><span class="line"> 6		.globl	main</span><br><span class="line"> 7		.<span class="built_in">type</span>	main, @<span class="keyword">function</span></span><br><span class="line"> 8	main:</span><br><span class="line"> 9	.LFB0:</span><br><span class="line">10		.cfi_startproc</span><br><span class="line">11		pushq	%rbp</span><br><span class="line">12		.cfi_def_cfa_offset 16</span><br><span class="line">13		.cfi_offset 6, -16</span><br><span class="line">14		movq	%rsp, %rbp</span><br><span class="line">15		.cfi_def_cfa_register 6</span><br><span class="line">16		movl	$.LC0, %edi</span><br><span class="line">17		call	puts</span><br><span class="line">18		movl	<span class="variable">$0</span>, %eax</span><br><span class="line">19		popq	%rbp</span><br><span class="line">20		.cfi_def_cfa 7, 8</span><br><span class="line">21		ret</span><br><span class="line">22		.cfi_endproc</span><br><span class="line">23	.LFE0:</span><br><span class="line">24		.size	main, .-main</span><br><span class="line">25		.ident	<span class="string">"GCC: (GNU) 4.8.5 20150623 (Red Hat 4.8.5-16)"</span></span><br><span class="line">26		.section	.note.GNU-stack,<span class="string">""</span>,@progbits</span><br></pre></td></tr></table></figure>
+<h3 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h3><p>把编译阶段生成的汇编文件转为目标二进制文件</p>
+<p>xxd命令查看二进制文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_98_243_centos ~]<span class="comment"># gcc -c blacksir.s -o blacksir.o</span></span><br><span class="line">[root@VM_98_243_centos ~]<span class="comment"># xxd blacksir.o</span></span><br><span class="line">0000000: 7f45 4c46 0201 0100 0000 0000 0000 0000  .ELF............</span><br><span class="line">0000010: 0100 3e00 0100 0000 0000 0000 0000 0000  ..&gt;.............</span><br><span class="line">0000020: 0000 0000 0000 0000 3801 0000 0000 0000  ........8.......</span><br><span class="line">0000030: 0000 0000 4000 0000 0000 4000 0d00 0a00  ....@.....@.....</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接动态库中的printf函数</p>
+<p>把汇编阶段生成的二进制文件转为可执行文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_98_243_centos ~]<span class="comment"># gcc blacksir.o -o blacksir</span></span><br><span class="line">[root@VM_98_243_centos ~]<span class="comment"># ./blacksir </span></span><br><span class="line">Hello BlackSir.cn</span><br></pre></td></tr></table></figure>
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/10/25/找工作的那些事儿/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/11/22/排序算法/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+
+
+
+    
+
+    
+	
+    
+	
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
