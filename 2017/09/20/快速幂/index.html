@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="和你谈情怀">
 <meta property="og:description" content="快速幂 快速幂的目的是为了快速求幂 假设我们要求a^b，普通算法是把a连乘b次，时间复杂度为O(b) 经过快速幂优化后时间复杂度为O(logb)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-14T10:00:18.404Z">
+<meta property="og:updated_time" content="2017-12-17T06:05:11.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速幂取模算法">
 <meta name="twitter:description" content="快速幂 快速幂的目的是为了快速求幂 假设我们要求a^b，普通算法是把a连乘b次，时间复杂度为O(b) 经过快速幂优化后时间复杂度为O(logb)">
@@ -93,7 +93,7 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#快速幂"><span class="toc-text"><a href="#&#x5FEB;&#x901F;&#x5E42;" class="headerlink" title="&#x5FEB;&#x901F;&#x5E42;"></a>&#x5FEB;&#x901F;&#x5E42;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#例：a-10"><span class="toc-text"><a href="#&#x4F8B;&#xFF1A;a-10" class="headerlink" title="&#x4F8B;&#xFF1A;a^10"></a>&#x4F8B;&#xFF1A;a^10</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快速幂取模"><span class="toc-text"><a href="#&#x5FEB;&#x901F;&#x5E42;&#x53D6;&#x6A21;" class="headerlink" title="&#x5FEB;&#x901F;&#x5E42;&#x53D6;&#x6A21;"></a>&#x5FEB;&#x901F;&#x5E42;&#x53D6;&#x6A21;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展-矩阵快速幂"><span class="toc-text"><a href="#&#x6269;&#x5C55;-&#x77E9;&#x9635;&#x5FEB;&#x901F;&#x5E42;" class="headerlink" title="&#x6269;&#x5C55; &#x77E9;&#x9635;&#x5FEB;&#x901F;&#x5E42;"></a>&#x6269;&#x5C55; &#x77E9;&#x9635;&#x5FEB;&#x901F;&#x5E42;</span></a>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速幂"><span class="toc-text"><a href="#&#x5FEB;&#x901F;&#x5E42;" class="headerlink" title="&#x5FEB;&#x901F;&#x5E42;"></a>&#x5FEB;&#x901F;&#x5E42;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速幂取模"><span class="toc-text"><a href="#&#x5FEB;&#x901F;&#x5E42;&#x53D6;&#x6A21;" class="headerlink" title="&#x5FEB;&#x901F;&#x5E42;&#x53D6;&#x6A21;"></a>&#x5FEB;&#x901F;&#x5E42;&#x53D6;&#x6A21;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#矩阵快速幂"><span class="toc-text"><a href="#&#x77E9;&#x9635;&#x5FEB;&#x901F;&#x5E42;" class="headerlink" title="&#x77E9;&#x9635;&#x5FEB;&#x901F;&#x5E42;"></a>&#x77E9;&#x9635;&#x5FEB;&#x901F;&#x5E42;</span></a></li></ol>
   </div>
 
 
@@ -141,26 +141,18 @@
 
   <div class="article-content">
     
-      <h3 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h3><ul>
+      <h2 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h2><ul>
 <li>快速幂的目的是为了快速求幂</li>
-<li>假设我们要求a^b，普通算法是把a连乘b次，时间复杂度为O(b)</li>
-<li>经过快速幂优化后时间复杂度为O(logb)</li>
-</ul>
-<a id="more"></a>
-<h5 id="例：a-10"><a href="#例：a-10" class="headerlink" title="例：a^10"></a>例：a^10</h5><ul>
-<li>10 = (1010)2</li>
-<li>a^10 = a^( 2^1 + 2^3)</li>
-<li>&amp;运算    用于二进制取位操作 （a&amp;1）为该二进制数最后一位</li>
-<li><ul>
-<li>&amp;运算 还可以判断奇偶 (a&amp;1) == 0 为偶数， (a&amp;1) == 1 为奇数</li>
-</ul>
+<li>假设我们要求<strong>a^b</strong>，普通算法是把<strong>a</strong>连乘<strong>b</strong>次，时间复杂度为<strong>O(b)</strong></li>
+<li>经过快速幂优化后时间复杂度为<strong>O(logb)</strong><a id="more"></a>
 </li>
-<li>(&gt;&gt;运算 可以去掉二进制最后一位的)</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span>  <span class="title">fast</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b)</span></span>&#123;</span><br><span class="line"> <span class="keyword">long</span> <span class="keyword">long</span> count = <span class="number">1</span>;<span class="comment">//记录</span></span><br><span class="line">	<span class="keyword">while</span>(b)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">if</span> (b &amp; <span class="number">1</span>) <span class="comment">//如果二进制为真参与运算</span></span><br><span class="line">    	count = (count * a);</span><br><span class="line">	a *= a; <span class="comment">//加倍</span></span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>; <span class="comment">//相当于b/2</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="快速幂取模"><a href="#快速幂取模" class="headerlink" title="快速幂取模"></a>快速幂取模</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span>  <span class="title">fast</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a,<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">long</span> <span class="keyword">long</span> count = <span class="number">1</span>; <span class="comment">//记录</span></span><br><span class="line">	<span class="keyword">while</span>(b)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">if</span> (b &amp; <span class="number">1</span>) <span class="comment">//如果二进制为真参与运算</span></span><br><span class="line">    	count = (count * a) % c;</span><br><span class="line">	a *= a; <span class="comment">//加倍</span></span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>; <span class="comment">//相当于b/2</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">return</span> count % c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="扩展-矩阵快速幂"><a href="#扩展-矩阵快速幂" class="headerlink" title="扩展 矩阵快速幂"></a>扩展 矩阵快速幂</h2><ul>
-<li>矩阵快速幂—&gt;把 * 操作用矩阵乘法函数代替</li>
+<p><strong>例：a^10<br>10 = (1010)2<br>a^10 = a^( 2^1 + 2^3)</strong></p>
+<p><strong>&amp;</strong>运算用于二进制取位操作，<strong>（a&amp;1）</strong> 为该二进制数最后一位。<br><strong>&amp;</strong>运算还可以判断奇偶 <strong>(a&amp;1) == 0</strong> 为偶数， <strong>(a&amp;1) == 1</strong> 为奇数。<br><strong>>&gt;</strong>运算可以去掉二进制最后一位的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">fast</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">long</span> <span class="keyword">long</span> b)</span></span>&#123;</span><br><span class="line"> <span class="keyword">long</span> <span class="keyword">long</span> count = <span class="number">1</span>;<span class="comment">//记录</span></span><br><span class="line">	<span class="keyword">while</span>(b)&#123;</span><br><span class="line">	<span class="keyword">if</span> (b &amp; <span class="number">1</span>) <span class="comment">//如果二进制为真参与运算</span></span><br><span class="line">    	count *= a;</span><br><span class="line">	a *= a; <span class="comment">//加倍</span></span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>; <span class="comment">//相当于b/2</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="快速幂取模"><a href="#快速幂取模" class="headerlink" title="快速幂取模"></a>快速幂取模</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">fast</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">long</span> <span class="keyword">long</span> b, <span class="keyword">long</span> <span class="keyword">long</span> c)</span></span>&#123;</span><br><span class="line"> <span class="keyword">long</span> <span class="keyword">long</span> count = <span class="number">1</span>; <span class="comment">//记录</span></span><br><span class="line">	<span class="keyword">while</span>(b)&#123;</span><br><span class="line">	<span class="keyword">if</span> (b &amp; <span class="number">1</span>) <span class="comment">//如果二进制为真参与运算</span></span><br><span class="line">    	count = (count * a) % c;</span><br><span class="line">	a *= a; <span class="comment">//加倍</span></span><br><span class="line">	b &gt;&gt;= <span class="number">1</span>; <span class="comment">//相当于b/2</span></span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">return</span> count % c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="矩阵快速幂"><a href="#矩阵快速幂" class="headerlink" title="矩阵快速幂"></a>矩阵快速幂</h2><ul>
+<li>把<strong>*</strong>操作用矩阵乘法函数代替</li>
 </ul>
 
     
