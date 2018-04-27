@@ -1,2 +1,6 @@
 .DS_Store
-
+Rakefile
+projects.html
+talks.html
+READ.txt
+run_docker.sh
