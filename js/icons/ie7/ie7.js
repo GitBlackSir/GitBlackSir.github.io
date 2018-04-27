@@ -6,6 +6,7 @@
 	<script src="ie7/ie7.js"></script>
 	<!--<![endif]-->
 */
+
 (function() {
 	function addIcon(el, entity) {
 		var html = el.innerHTML;
