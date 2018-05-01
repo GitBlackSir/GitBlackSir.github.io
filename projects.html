@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Projects - 1024bit</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css" />
+  <link rel="stylesheet" href="/js/icons/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/contents/fav.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://0.0.0.0:4000/projects.html" />
+  <meta property="og:title" content="Projects" />
+  
+  <meta property="og:image" content="http://1024bit.io/images/contents/cat.png" />
+  <script>
+    var trackOutboundLink = function(url) {
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': url,
+        'transport_type': 'beacon',
+        'event_callback': function(){document.location = url;}
+      });
+    }
+  </script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!-- Begin Jekyll SEO tag v2.2.3 -->
+<meta property="og:title" content="Projects" />
+<meta name="author" content="GitBlackSir" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://0.0.0.0:4000/projects.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/projects.html" />
+<meta property="og:site_name" content="1024bit" />
+<script type="application/ld+json">
+{"@context":"http://schema.org","@type":"WebPage","headline":"Projects","author":{"@type":"Person","name":"GitBlackSir"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/images/contents/cat.png"},"name":"GitBlackSir"},"url":"http://0.0.0.0:4000/projects.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body class="projects">
+  <div id="container">
+    <div class="wrap">
+    <div id="header">
+      <div id="branding">
+        <h1 id="site-title">
+          <a href="/" title="1024bit" rel="Home">1024bit</a>
+        </h1>
+      </div>
+      <div id="menu-primary" class="menu-container">
+        <div class="menu">
+          
+          <ul id="menu-primary-items">
+            <li class="menu-item home"><a class="spec" href="/">Home</a></li>
+            <li class="menu-item projects"><a class="spec" href="/projects">Projects</a></li>
+          <!--   <li class="menu-item talks"><a class="spec" href="/talks">Talks</a></li> -->
+            <li class="menu-item blog"><a class="spec" href="/blog/">Blog</a></li>
+            <li class="menu-item github"><a class="spec" href="http://github.com/GitBlackSir/" target="_blank">Github</a></li>
+          </ul>
+          
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div id="main">
+
+
+<div id="content">
+  <hr />
+
+<h2 id="本科毕业设计">本科毕业设计</h2>
+<h3 id="龙卷风短网系统的设计与实现-api-demo"><a href="http:tinyurl.1024bit.io">龙卷风·短网系统的设计与实现</a> <code class="highlighter-rouge">API Demo</code></h3>
+<ul>
+  <li><code class="highlighter-rouge">Python3.6</code><code class="highlighter-rouge">Tornado</code>框架实现的<code class="highlighter-rouge">B/S</code>架构短网址系统<code class="highlighter-rouge">API</code></li>
+  <li><code class="highlighter-rouge">Twitter</code><code class="highlighter-rouge">Snowflake</code>算法实现分布式发号器</li>
+  <li><code class="highlighter-rouge">Redis</code>数据库用于持久化<code class="highlighter-rouge">短网址后缀</code>:<code class="highlighter-rouge">key</code>,<code class="highlighter-rouge">长网址</code>:<code class="highlighter-rouge">value</code>，短网址后缀为<code class="highlighter-rouge">64bit</code><code class="highlighter-rouge">ID</code>整数转<code class="highlighter-rouge">62进制[0-9a-zA-Z]</code>字符串</li>
+  <li>通过<code class="highlighter-rouge">LRU</code>算法淘汰最近一小时内未大量压缩的长网址</li>
+  <li><a href="http://1024bit.io/blog/2018/05/01/基于分布式发号器的短网址系统API-Reference/">API文档</a><code class="highlighter-rouge">json</code>
+    <ul>
+      <li>面向开发人员
+        <ul>
+          <li><code class="highlighter-rouge">http://api-id.1024bit.io</code></li>
+        </ul>
+      </li>
+      <li>面向自媒体等个人用户
+        <ul>
+          <li><code class="highlighter-rouge">http://api-url.1024bit.io/json&amp;convert=URL</code></li>
+          <li><code class="highlighter-rouge">http://api-url.1024bit.io/json&amp;restore=URL</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="诺基亚">诺基亚</h2>
+<h3 id="实习内容">实习内容</h3>
+<ul>
+  <li>负责开发网元<code class="highlighter-rouge">log</code>信息指标爬虫异步脚本，并针对数据抓取异常进行优化。
+独立完成了<code class="highlighter-rouge">70%</code><code class="highlighter-rouge">Python</code>脚本，部署了<code class="highlighter-rouge">Zabbix</code>监控系统，对<code class="highlighter-rouge">Nginx</code>进行了调优工作。
+掌握了<code class="highlighter-rouge">Python</code>文件操作与异步编程，<code class="highlighter-rouge">re正则模块</code>与<code class="highlighter-rouge">Linux</code>下运维相关<code class="highlighter-rouge">Shell</code>命令</li>
+</ul>
+
+<hr />
+
+<h2 id="课程项目">课程项目</h2>
+
+<h3 id="家庭智能网关报警邮件系统">家庭智能网关报警邮件系统</h3>
+
+<hr />
+
+<h2 id="gitbook">GitBook</h2>
+
+<h3 id="c-必经之路"><a href="">《C++ 必经之路》</a></h3>
+
+<hr />
+
+</div><!-- #content -->
+
+      </div><!-- #main -->
+
+      <div class="clear"></div>
+
+      <div id="fotterLinks">
+        <a href="https://github.com/GitBlackSir/" alt="GitHub" target="_blank" >GitHub</a>
+<!--         |
+        <a href="https://www.gitbook.com/@gitblacksir" alt="GitBook" target="_blank" >GitBook</a> -->
+        |
+        <a href="http://twitter.com/GitBlackSir/" alt="Twitter" target="_blank" >Twitter</a>
+        |
+        <a href="mailto:gitblacksir@gmail.com" alt="email" target="_blank">Email</a>
+      </div>
+
+      <div id="copyright">
+        &copy; 2017–2018 <a href="http://1024bit.io/">1024bit</a>. All rights reserved.
+      </div>
+    </div><!-- .wrap -->
+  </div><!-- #container -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="/js/toc/toc.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.toc').toc({
+        title: '',
+        listType: 'ol',
+        minimumHeaders: 2,
+        headers: 'h2, h3, h4, h5, h6',
+        linkHere: true,
+        linkHereTitle: 'Link here',
+        backToTop: true,
+        backToTopId: 'toc',
+        backToTopTitle: 'Back to Table of Contents',
+      });
+      $('.jekyll-toc-header a.jekyll-toc-link-here span.jekyll-toc-icon').addClass('icon icon-link');
+      $('.jekyll-toc-header a.jekyll-toc-back-to-top span.jekyll-toc-icon').addClass('icon icon-chevron-up');
+    });
+  </script>
+</body>
+</html>
+
