@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>基于分布式发号器的短网址系统API Reference - 1024bit</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css" />
+  <link rel="stylesheet" href="/js/icons/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/contents/fav.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://0.0.0.0:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI-Reference/" />
+  <meta property="og:title" content="基于分布式发号器的短网址系统API Reference" />
+  <meta property="og:description" content="<hr />
+
+" />
+  <meta property="og:image" content="http://1024bit.io/images/contents/cat.png" />
+  <script>
+    var trackOutboundLink = function(url) {
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': url,
+        'transport_type': 'beacon',
+        'event_callback': function(){document.location = url;}
+      });
+    }
+  </script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!-- Begin Jekyll SEO tag v2.2.3 -->
+<meta property="og:title" content="基于分布式发号器的短网址系统API Reference" />
+<meta name="author" content="GitBlackSir" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://0.0.0.0:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI-Reference/" />
+<meta property="og:url" content="http://0.0.0.0:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI-Reference/" />
+<meta property="og:site_name" content="1024bit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-05-01T00:00:00-05:00" />
+<script type="application/ld+json">
+{"@context":"http://schema.org","@type":"BlogPosting","headline":"基于分布式发号器的短网址系统API Reference","author":{"@type":"Person","name":"GitBlackSir"},"datePublished":"2018-05-01T00:00:00-05:00","dateModified":"2018-05-01T00:00:00-05:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/images/contents/cat.png"},"name":"GitBlackSir"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI-Reference/"},"url":"http://0.0.0.0:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8F%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI-Reference/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body class="">
+  <div id="container">
+    <div class="wrap">
+    <div id="header">
+      <div id="branding">
+        <h1 id="site-title">
+          <a href="/" title="1024bit" rel="Home">1024bit</a>
+        </h1>
+      </div>
+      <div id="menu-primary" class="menu-container">
+        <div class="menu">
+          
+          <ul id="menu-primary-items">
+            <li class="menu-item home"><a class="spec" href="/">Home</a></li>
+            <li class="menu-item projects"><a class="spec" href="/projects">Projects</a></li>
+          <!--   <li class="menu-item talks"><a class="spec" href="/talks">Talks</a></li> -->
+            <li class="menu-item blog"><a class="spec" href="/blog/">Blog</a></li>
+            <li class="menu-item github"><a class="spec" href="http://github.com/GitBlackSir/" target="_blank">Github</a></li>
+          </ul>
+          
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div id="main">
+
+
+<div id="content">
+  <div class="hfeed">
+    <div class="hentry post">
+      <div class="post-content">
+        <div class="sticky-header">
+          <h1>基于分布式发号器的短网址系统API Reference</h1>
+          
+          <div class="byline">May 01, 2018 . <a href="/blog/categories.html#api" class="category">api</a></div>
+        </div>
+
+        <div id="toc" class="toc"></div>
+
+        <div class="entry-content">
+          <hr />
+
+<h2 id="龙卷风短网址beta"><a href="http:tinyurl.1024bit.io">龙卷风·短网址Beta</a></h2>
+
+<h3 id="environment">Environment</h3>
+<ul>
+  <li><code class="highlighter-rouge">Python3.6</code> <code class="highlighter-rouge">Tornado5</code> <code class="highlighter-rouge">SQLAlchemy</code> <code class="highlighter-rouge">Redis</code> <code class="highlighter-rouge">MySQL</code></li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ screen python3.6 server_api_for_develop.py --port=1111 --datacenter=0 --worker==0 &amp;
+$ screen python3.6 server_api_for_user.py -- port=2222 &amp;
+$ screen python3.6 server_web.py &amp;
+$ screen python3.6 server_redirct.py &amp;
+</code></pre>
+</div>
+
+<h3 id="docker">Docker</h3>
+<ul>
+  <li>Coding…Dockerfile</li>
+</ul>
+
+<hr />
+
+<h2 id="api-reference">API Reference</h2>
+
+<h3 id="httpapi-id1024bitio">http://api-id.1024bit.io/</h3>
+
+<p><strong>返回<code class="highlighter-rouge">Json</code>示例:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>json = {
+	"id": 4088633170486886401,
+	"short_url": "4S1YXNt1JN7",
+	"time": 1525087710.975234,
+	"data_center_id": 0,
+	"worker_id": 0,
+	"status": 1
+}
+</code></pre>
+</div>
+
+<blockquote>
+  <ul>
+    <li>‘status’:
+      <ul>
+        <li>0 <code class="highlighter-rouge">请求成功</code>
+          <ul>
+            <li>“id”: “由分布式发号器计算出的<code class="highlighter-rouge">64bit</code>整数”</li>
+            <li>“short_url”: “<code class="highlighter-rouge">64bit</code>整数转<code class="highlighter-rouge">62进制[0-9a-zA-Z]</code>字符串”</li>
+            <li>“time”: “unix当前时间戳<code class="highlighter-rouge">毫秒</code>”</li>
+            <li>“data_center_id”: “分布式进程所在数据中心<code class="highlighter-rouge">集群ID</code>”</li>
+            <li>“worker_id”: “分布式进程所在工作机器<code class="highlighter-rouge">可理解进为程标识码ID</code>”,</li>
+          </ul>
+        </li>
+        <li>1 <code class="highlighter-rouge">请求失败</code>
+          <ul>
+            <li>time”: “unix当前时间戳<code class="highlighter-rouge">毫秒</code>”</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h3 id="httpapi-url1024bitiojsonconverturl">http://api-url.1024bit.io/json&amp;convert=<code class="highlighter-rouge">URL</code></h3>
+
+<p><code class="highlighter-rouge">URL</code>:所需转换的长网址</p>
+
+<p><strong>返回<code class="highlighter-rouge">Json</code>示例:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>json = {
+	"status": 4,
+	"messages": "successful",
+	"short_url": "http://t.1024bit.io/4S2TAmcuSaJ"
+}
+</code></pre>
+</div>
+<blockquote>
+  <ul>
+    <li>‘status’:
+      <ul>
+        <li>0 ‘messages’: ‘EMPTY URL!’,’short_url’: None</li>
+        <li>1 ‘messages’: ‘FORBID INPUT TINYURL!’,’short_url’: None</li>
+        <li>2 ‘messages’: ‘this short_url from redis’,’short_url’: ‘http://t.1024bit.io/xxxxx’</li>
+        <li>3 ‘messages’: ‘server api for develop successful’,’short_url’: ‘http://t.1024bit.io/xxxxx’</li>
+        <li>4 ‘messages’: ‘URL INPUT ERRO!’,’short_url’: None</li>
+        <li>5 ‘messages’: ‘URL ERRO!’,’short_url’: None</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h3 id="httpapi-url1024bitiojsonrestoreurl">http://api-url.1024bit.io/json&amp;restore=<code class="highlighter-rouge">URL</code></h3>
+
+<p><code class="highlighter-rouge">URL</code>:所需转换的短网址</p>
+
+<p><strong>返回<code class="highlighter-rouge">Json</code>示例:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>json = {
+	"status": 1,
+	"messages": "successful",
+	"long_url": "https://www.google.com/ncr"
+}
+</code></pre>
+</div>
+<blockquote>
+  <ul>
+    <li>‘status’:
+      <ul>
+        <li>0 ‘messages’: ‘EMPTY URL!’,’long_url’: None</li>
+        <li>1 ‘messages’: ‘SUCCESSFULLY!’,’long_url’:’http://google.com/ncr’</li>
+        <li>2 ‘messages’: ‘URL EG:http://t.1024bit.io/+xxxxx’,’long_url’: None</li>
+        <li>3 ‘messages’: ‘URL ERRO!’,’long_url’: None</li>
+        <li>4 ‘messages’: ‘URL ERRO!’,’long_url’: None</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+        </div>
+
+        <!-- 
+ -->
+      </div>
+    </div>
+  </div>
+</div><!-- #content -->
+
+      </div><!-- #main -->
+
+      <div class="clear"></div>
+
+      <div id="fotterLinks">
+        <a href="https://github.com/GitBlackSir/" alt="GitHub" target="_blank" >GitHub</a>
+<!--         |
+        <a href="https://www.gitbook.com/@gitblacksir" alt="GitBook" target="_blank" >GitBook</a> -->
+        |
+        <a href="http://twitter.com/GitBlackSir/" alt="Twitter" target="_blank" >Twitter</a>
+        |
+        <a href="mailto:gitblacksir@gmail.com" alt="email" target="_blank">Email</a>
+      </div>
+
+      <div id="copyright">
+        &copy; 2017–2018 <a href="http://1024bit.io/">1024bit</a>. All rights reserved.
+      </div>
+    </div><!-- .wrap -->
+  </div><!-- #container -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="/js/toc/toc.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.toc').toc({
+        title: '',
+        listType: 'ol',
+        minimumHeaders: 2,
+        headers: 'h2, h3, h4, h5, h6',
+        linkHere: true,
+        linkHereTitle: 'Link here',
+        backToTop: true,
+        backToTopId: 'toc',
+        backToTopTitle: 'Back to Table of Contents',
+      });
+      $('.jekyll-toc-header a.jekyll-toc-link-here span.jekyll-toc-icon').addClass('icon icon-link');
+      $('.jekyll-toc-header a.jekyll-toc-back-to-top span.jekyll-toc-icon').addClass('icon icon-chevron-up');
+    });
+  </script>
+</body>
+</html>
+
