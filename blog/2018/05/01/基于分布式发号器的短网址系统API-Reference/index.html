@@ -112,32 +112,39 @@ $ screen python3.6 server_redirct.py &amp;
 <p><strong>返回<code class="highlighter-rouge">Json</code>示例:</strong></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>json = {
+	"status": 0
+	"messages": "SUCCESSFUL!"
 	"id": 4088633170486886401,
 	"short_url": "4S1YXNt1JN7",
 	"time": 1525087710.975234,
 	"data_center_id": 0,
 	"worker_id": 0,
-	"status": 1
 }
 </code></pre>
 </div>
 
 <blockquote>
   <ul>
-    <li>‘status’:
+    <li>“status”:
       <ul>
         <li>0 <code class="highlighter-rouge">请求成功</code>
           <ul>
-            <li>“id”: “由分布式发号器计算出的<code class="highlighter-rouge">64bit</code>整数”</li>
-            <li>“short_url”: “<code class="highlighter-rouge">64bit</code>整数转<code class="highlighter-rouge">62进制[0-9a-zA-Z]</code>字符串”</li>
-            <li>“time”: “unix当前时间戳<code class="highlighter-rouge">毫秒</code>”</li>
-            <li>“data_center_id”: “分布式进程所在数据中心<code class="highlighter-rouge">集群ID</code>”</li>
-            <li>“worker_id”: “分布式进程所在工作机器<code class="highlighter-rouge">可理解进为程标识码ID</code>”,</li>
+            <li>messages”: “SUCCESSFUL!”</li>
+            <li>“id”: 0 <code class="highlighter-rouge">由分布式发号器计算出的</code>64bit<code class="highlighter-rouge">整数</code></li>
+            <li>“short_url”: “http://t.1024bit.io/4S5zsUzQOlj” <code class="highlighter-rouge">64bit整数转62进制[0-9a-zA-Z]字符串</code></li>
+            <li>“time”: 1525087234.847292 <code class="highlighter-rouge">unix当前时间戳</code>毫秒`</li>
+            <li>“data_center_id”:0 <code class="highlighter-rouge">分布式进程所在数据中心集群ID</code></li>
+            <li>“worker_id”:0 <code class="highlighter-rouge">分布式进程所在工作机器，可理解进为程标识码ID</code></li>
           </ul>
         </li>
         <li>1 <code class="highlighter-rouge">请求失败</code>
           <ul>
-            <li>time”: “unix当前时间戳<code class="highlighter-rouge">毫秒</code>”</li>
+            <li>messages”: “ERROR!”</li>
+            <li>“id”: None</li>
+            <li>“short_url”: None</li>
+            <li>“time”: 1525087234.847292</li>
+            <li>“data_center_id”:0</li>
+            <li>“worker_id”:0</li>
           </ul>
         </li>
       </ul>
@@ -154,22 +161,22 @@ $ screen python3.6 server_redirct.py &amp;
 <p><strong>返回<code class="highlighter-rouge">Json</code>示例:</strong></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>json = {
-	"status": 4,
-	"messages": "successful",
-	"short_url": "http://t.1024bit.io/4S2TAmcuSaJ"
+	"status": 3,
+	"messages": "SUCCESSFUL SHORT_URL FROM API_DEVELOP!",
+	"short_url": "http://t.1024bit.io/4S5A2O6o9wZ"
 }
 </code></pre>
 </div>
 <blockquote>
   <ul>
-    <li>‘status’:
+    <li>“status”:
       <ul>
-        <li>0 ‘messages’: ‘EMPTY URL!’,’short_url’: None</li>
-        <li>1 ‘messages’: ‘FORBID INPUT TINYURL!’,’short_url’: None</li>
-        <li>2 ‘messages’: ‘this short_url from redis’,’short_url’: ‘http://t.1024bit.io/xxxxx’</li>
-        <li>3 ‘messages’: ‘server api for develop successful’,’short_url’: ‘http://t.1024bit.io/xxxxx’</li>
-        <li>4 ‘messages’: ‘URL INPUT ERRO!’,’short_url’: None</li>
-        <li>5 ‘messages’: ‘URL ERRO!’,’short_url’: None</li>
+        <li>0 “messages”: “EMPTY URL!”,”short_url”: None</li>
+        <li>1 “messages”: “FORBID INPUT TINYURL!”,”short_url”: None</li>
+        <li>2 “messages”: “SUCCESSFUL SHORT_URL FROM REDIS!”,”short_url”: “http://t.1024bit.io/xxxxx”</li>
+        <li>3 “messages”: “SUCCESSFUL SHORT_URL FROM API_DEVELOP!”,”short_url”: “http://t.1024bit.io/xxxxx”</li>
+        <li>4 “messages”: “URL INPUT ERROR!”,”short_url”: None</li>
+        <li>5 “messages”: “URL ERROR!”,”short_url”: None</li>
       </ul>
     </li>
   </ul>
@@ -185,24 +192,25 @@ $ screen python3.6 server_redirct.py &amp;
 
 <div class="highlighter-rouge"><pre class="highlight"><code>json = {
 	"status": 1,
-	"messages": "successful",
+	"messages": "SUCCESSFULL!",
 	"long_url": "https://www.google.com/ncr"
 }
 </code></pre>
 </div>
 <blockquote>
   <ul>
-    <li>‘status’:
+    <li>“status”:
       <ul>
-        <li>0 ‘messages’: ‘EMPTY URL!’,’long_url’: None</li>
-        <li>1 ‘messages’: ‘SUCCESSFULLY!’,’long_url’:’http://google.com/ncr’</li>
-        <li>2 ‘messages’: ‘URL EG:http://t.1024bit.io/+xxxxx’,’long_url’: None</li>
-        <li>3 ‘messages’: ‘URL ERRO!’,’long_url’: None</li>
-        <li>4 ‘messages’: ‘URL ERRO!’,’long_url’: None</li>
+        <li>0 “messages”: “EMPTY URL!”,”long_url”: None</li>
+        <li>1 “messages”: “SUCCESSFULL!”,”long_url”:”http://google.com/ncr”</li>
+        <li>2 “messages”: “URL ERROR! EG:http://t.1024bit.io/+xxxxx”,”long_url”: None</li>
+        <li>3 “messages”: “URL ERROR!”,”long_url”: None</li>
+        <li>4 “messages”: “URL ERROR!”,”long_url”: None</li>
       </ul>
     </li>
   </ul>
 </blockquote>
+
 
         </div>
 
