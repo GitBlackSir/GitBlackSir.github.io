@@ -223,10 +223,12 @@ $ screen python3.6 run_web_server.py &amp;
 
 <h2 id="api-client-for-python">API Client For Python</h2>
 
-<ul>
-  <li><code class="highlighter-rouge">dict = Client('HOST', 'PORT').get_id()</code></li>
-</ul>
+<p><code class="highlighter-rouge">请求示例 </code></p>
 
+<div class="highlighter-rouge"><pre class="highlight"><code>for i in range(100):
+    print(Client('tinyurl-api.1024bit.io',80).get_id())
+</code></pre>
+</div>
 <div class="highlighter-rouge"><pre class="highlight"><code>import json
 import requests
 class Client(object):
@@ -234,7 +236,7 @@ class Client(object):
         self.url = url
         self.host = host
         self.port = port
-        self.api_develop = 'http://%s:%s/' % (self.host, self.port)
+        self.api_develop = 'http://%s:%s/json&amp;get-id-url' % (self.host, self.port)
         self.api_user_get_tinyurl = 'http://%s:%s/json&amp;convert=%s/' %(self.host,self.port,self.url)
         self.api_user_get_longurl = 'http://%s:%s/json&amp;restore=%s/' %(self.host,self.port,self.url)
 
