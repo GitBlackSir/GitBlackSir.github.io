@@ -69,7 +69,7 @@
   <hr />
 
 <h2 id="本科毕业设计">本科毕业设计</h2>
-<h3 id="龙卷风短网系统的设计与实现-api-demo"><a href="http:tinyurl.1024bit.io">龙卷风·短网系统的设计与实现</a> <code class="highlighter-rouge">API Demo</code></h3>
+<h3 id="基于分布式id生成器的短网址系统接口设计与实现">基于分布式ID生成器的短网址系统接口设计与实现</h3>
 <ul>
   <li><code class="highlighter-rouge">Python3.6</code><code class="highlighter-rouge">Tornado</code>框架实现的<code class="highlighter-rouge">B/S</code>架构短网址系统<code class="highlighter-rouge">API</code></li>
   <li><code class="highlighter-rouge">Twitter</code><code class="highlighter-rouge">Snowflake</code>算法实现分布式发号器</li>
@@ -77,15 +77,16 @@
   <li>通过<code class="highlighter-rouge">LRU</code>算法淘汰最近一小时内未大量压缩的长网址</li>
   <li><a href="http://1024bit.io/blog/2018/05/01/基于分布式发号器的短网址系统API-Reference/">API文档</a><code class="highlighter-rouge">json</code>
     <ul>
-      <li>面向开发人员
+      <li>面向开发者
         <ul>
-          <li><code class="highlighter-rouge">http://api-id.1024bit.io</code></li>
+          <li><code class="highlighter-rouge">http://tinyurl-api.1024bit.io/json&amp;get-id-url</code></li>
+          <li><code class="highlighter-rouge">http://tinyurl-api.1024bit.io/json&amp;convert=URL</code></li>
+          <li><code class="highlighter-rouge">http://tinyurl-api.1024bit.io/json&amp;restore=URL</code></li>
         </ul>
       </li>
-      <li>面向自媒体等个人用户
+      <li>自媒体用户
         <ul>
-          <li><code class="highlighter-rouge">http://api-url.1024bit.io/json&amp;convert=URL</code></li>
-          <li><code class="highlighter-rouge">http://api-url.1024bit.io/json&amp;restore=URL</code></li>
+          <li><code class="highlighter-rouge">API Demo:</code> <a href="http:tinyurl.1024bit.io">龙卷风·短网址Beta</a></li>
         </ul>
       </li>
     </ul>

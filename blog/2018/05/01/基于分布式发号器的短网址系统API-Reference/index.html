@@ -84,17 +84,25 @@
         <div class="entry-content">
           <hr />
 
-<h2 id="龙卷风短网址beta"><a href="http:tinyurl.1024bit.io">龙卷风·短网址Beta</a></h2>
+<h2 id="api-demo龙卷风短网址beta">API <code class="highlighter-rouge">Demo</code>：<a href="http://tinyurl.1024bit.io">龙卷风·短网址Beta</a></h2>
 
 <h3 id="environment">Environment</h3>
 <ul>
+  <li><a href="https://github.com/GitBlackSir/Tornado_TinyURL.git"><code class="highlighter-rouge">源码 GitHub</code></a></li>
   <li><code class="highlighter-rouge">Python3.6</code> <code class="highlighter-rouge">Tornado5</code> <code class="highlighter-rouge">SQLAlchemy</code> <code class="highlighter-rouge">Redis</code> <code class="highlighter-rouge">MySQL</code></li>
+  <li>运行<code class="highlighter-rouge">run_api_server.py</code>附加参数<code class="highlighter-rouge">--help</code>查看脚本命名说明</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ screen python3.6 server_api_for_develop.py --port=1111 --datacenter=0 --worker==0 &amp;
-$ screen python3.6 server_api_for_user.py -- port=2222 &amp;
-$ screen python3.6 server_web.py &amp;
-$ screen python3.6 server_redirct.py &amp;
+<div class="highlighter-rouge"><pre class="highlight"><code>$ python3.6 run_api_server --help
+</code></pre>
+</div>
+<ul>
+  <li>分别执行<code class="highlighter-rouge">API</code>服务端与<code class="highlighter-rouge">Demo</code><code class="highlighter-rouge">龙卷风·短网址Web系统</code></li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ screen python3.6 run_api_server.py --port=1104 --datacenter=0 --worker=0 &amp;
+
+$ screen python3.6 run_web_server.py &amp;
 </code></pre>
 </div>
 
@@ -107,16 +115,16 @@ $ screen python3.6 server_redirct.py &amp;
 
 <h2 id="api-reference">API Reference</h2>
 
-<h3 id="httpapi-id1024bitio">http://api-id.1024bit.io/</h3>
+<h3 id="httptinyurl-api1024bitiojsonget-id-url">http://tinyurl-api.1024bit.io/json&amp;get-id-url</h3>
 
 <p><strong>返回<code class="highlighter-rouge">Json</code>示例:</strong></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>json = {
 	"status": 0,
 	"messages": "SUCCESSFUL!",
-	"id": 4088633170486886401,
-	"short_url": "4S1YXNt1JN7",
-	"time": 1525087710.975234,
+	"id": 4091465116246081537,
+	"short_url": "4SeX7N2RNYt",
+	"time": 1525762899.459599,
 	"data_center_id": 0,
 	"worker_id": 0,
 }
@@ -130,9 +138,9 @@ $ screen python3.6 server_redirct.py &amp;
         <li>0 <code class="highlighter-rouge">请求成功</code>
           <ul>
             <li>messages”: “SUCCESSFUL!”</li>
-            <li>“id”: 0 <code class="highlighter-rouge">由分布式发号器计算出的64bit整数</code></li>
-            <li>“short_url”: “http://t.1024bit.io/4S5zsUzQOlj” <code class="highlighter-rouge">64bit整数转62进制[0-9a-zA-Z]字符串</code></li>
-            <li>“time”: 1525087234.847292 <code class="highlighter-rouge">unix当前时间戳毫秒</code></li>
+            <li>“id”:  4091465116246081537, <code class="highlighter-rouge">由分布式发号器计算出的64bit整数</code></li>
+            <li>“short_url”: “4SeX7N2RNYt”, <code class="highlighter-rouge">64bit整数转62进制[0-9a-zA-Z]字符串</code></li>
+            <li>“time”: 1525762899.459599, <code class="highlighter-rouge">unix当前时间戳毫秒</code></li>
             <li>“data_center_id”:0 <code class="highlighter-rouge">分布式进程所在数据中心集群ID</code></li>
             <li>“worker_id”:0 <code class="highlighter-rouge">分布式进程所在工作机器，可理解进为程标识码ID</code></li>
           </ul>
@@ -154,7 +162,7 @@ $ screen python3.6 server_redirct.py &amp;
 
 <hr />
 
-<h3 id="httpapi-url1024bitiojsonconverturl">http://api-url.1024bit.io/json&amp;convert=<code class="highlighter-rouge">URL</code></h3>
+<h3 id="httptinyurl-api1024bitiojsonconverturl">http://tinyurl-api.1024bit.io/json&amp;convert=<code class="highlighter-rouge">URL</code></h3>
 
 <p><code class="highlighter-rouge">URL</code>:所需转换的长网址</p>
 
@@ -162,8 +170,8 @@ $ screen python3.6 server_redirct.py &amp;
 
 <div class="highlighter-rouge"><pre class="highlight"><code>json = {
 	"status": 3,
-	"messages": "SUCCESSFUL SHORT_URL FROM API_DEVELOP!",
-	"short_url": "http://t.1024bit.io/4S5A2O6o9wZ"
+	"messages": "SUCCESSFUL SHORT_URL FROM API!",
+	"short_url": "http://t.1024bit.io/4SeXcf5cBsl"
 }
 </code></pre>
 </div>
@@ -173,8 +181,8 @@ $ screen python3.6 server_redirct.py &amp;
       <ul>
         <li>0 “messages”: “EMPTY URL!”,”short_url”: None</li>
         <li>1 “messages”: “FORBID INPUT TINYURL!”,”short_url”: None</li>
-        <li>2 “messages”: “SUCCESSFUL SHORT_URL FROM REDIS!”,”short_url”: “http://t.1024bit.io/xxxxx”</li>
-        <li>3 “messages”: “SUCCESSFUL SHORT_URL FROM API_DEVELOP!”,”short_url”: “http://t.1024bit.io/xxxxx”</li>
+        <li>2 “messages”: “SUCCESSFUL SHORT_URL FROM REDIS!”,”short_url”: “http://t.1024bit.io/4SeXcf5cBsl”</li>
+        <li>3 “messages”: “SUCCESSFUL SHORT_URL FROM API!”,”short_url”: “http://t.1024bit.io/4SeXcf5cBsl”</li>
         <li>4 “messages”: “URL INPUT ERROR!”,”short_url”: None</li>
         <li>5 “messages”: “URL ERROR!”,”short_url”: None</li>
       </ul>
@@ -184,7 +192,7 @@ $ screen python3.6 server_redirct.py &amp;
 
 <hr />
 
-<h3 id="httpapi-url1024bitiojsonrestoreurl">http://api-url.1024bit.io/json&amp;restore=<code class="highlighter-rouge">URL</code></h3>
+<h3 id="httptinyurl-api1024bitiojsonrestoreurl">http://tinyurl-api.1024bit.io/json&amp;restore=<code class="highlighter-rouge">URL</code></h3>
 
 <p><code class="highlighter-rouge">URL</code>:所需转换的短网址</p>
 
@@ -193,8 +201,8 @@ $ screen python3.6 server_redirct.py &amp;
 <div class="highlighter-rouge"><pre class="highlight"><code>json = {
 	"status": 1,
 	"messages": "SUCCESSFULL!",
-	"long_url": "https://www.google.com/ncr"
-}
+	"long_url": "https://aceld.gitbooks.io/libevent/content/"
+	}
 </code></pre>
 </div>
 <blockquote>
@@ -203,7 +211,7 @@ $ screen python3.6 server_redirct.py &amp;
       <ul>
         <li>0 “messages”: “EMPTY URL!”,”long_url”: None</li>
         <li>1 “messages”: “SUCCESSFULL!”,”long_url”:”http://google.com/ncr”</li>
-        <li>2 “messages”: “URL ERROR! EG:http://t.1024bit.io/+xxxxx”,”long_url”: None</li>
+        <li>2 “messages”: “URL ERROR! http://t.1024bit.io/+xxxxx”,”long_url”: None</li>
         <li>3 “messages”: “URL ERROR!”,”long_url”: None</li>
         <li>4 “messages”: “URL ERROR!”,”long_url”: None</li>
       </ul>
@@ -211,6 +219,38 @@ $ screen python3.6 server_redirct.py &amp;
   </ul>
 </blockquote>
 
+<hr />
+
+<h2 id="api-client-for-python">API Client For Python</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">dict = Client('HOST', 'PORT').get_id()</code></li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import json
+import requests
+class Client(object):
+    def __init__(self, host, port, url = ''):
+        self.url = url
+        self.host = host
+        self.port = port
+        self.api_develop = 'http://%s:%s/' % (self.host, self.port)
+        self.api_user_get_tinyurl = 'http://%s:%s/json&amp;convert=%s/' %(self.host,self.port,self.url)
+        self.api_user_get_longurl = 'http://%s:%s/json&amp;restore=%s/' %(self.host,self.port,self.url)
+
+    def get_id(self):
+        res = requests.get(self.api_develop)
+        return json.loads(res.text)
+
+    def get_tinyurl(self):
+        res = requests.get(self.api_user_get_tinyurl)
+        return json.loads(res.text)
+    def get_longurl(self):
+        res = requests.get(self.api_user_get_longurl)
+        return json.loads(res.text)
+
+</code></pre>
+</div>
 
         </div>
 
