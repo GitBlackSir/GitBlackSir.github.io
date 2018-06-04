@@ -1,1 +1,3 @@
-## 1024bit.io
+## http://blog.1024bit.io/
+
+
