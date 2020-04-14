@@ -1,4 +1,5 @@
 .DS_Store
 Rakefile
 READ.txt
-run_docker.sh
+docker.sh
+run.sh

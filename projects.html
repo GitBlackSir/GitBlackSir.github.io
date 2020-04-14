@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="/images/contents/fav.png" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://0.0.0.0:4000/projects.html" />
+  <meta property="og:url" content="http://localhost:4000/projects.html" />
   <meta property="og:title" content="Projects" />
   
   <meta property="og:image" content="http://1024bit.io/images/contents/cat.png" />
@@ -29,11 +29,11 @@
 <meta property="og:title" content="Projects" />
 <meta name="author" content="GitBlackSir" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="http://0.0.0.0:4000/projects.html" />
-<meta property="og:url" content="http://0.0.0.0:4000/projects.html" />
+<link rel="canonical" href="http://localhost:4000/projects.html" />
+<meta property="og:url" content="http://localhost:4000/projects.html" />
 <meta property="og:site_name" content="1024bit" />
 <script type="application/ld+json">
-{"@context":"http://schema.org","@type":"WebPage","headline":"Projects","author":{"@type":"Person","name":"GitBlackSir"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/images/contents/cat.png"},"name":"GitBlackSir"},"url":"http://0.0.0.0:4000/projects.html"}</script>
+{"@context":"http://schema.org","@type":"WebPage","headline":"Projects","author":{"@type":"Person","name":"GitBlackSir"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/images/contents/cat.png"},"name":"GitBlackSir"},"url":"http://localhost:4000/projects.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -44,7 +44,7 @@
     <div id="header">
       <div id="branding">
         <h1 id="site-title">
-          <a href="/" title="1024bit" rel="Home">和你谈情怀</a>
+          <a href="/" title="1024bit" rel="Home">FIFO</a>
         </h1>
       </div>
       <div id="menu-primary" class="menu-container">
@@ -52,7 +52,7 @@
 
           <ul id="menu-primary-items">
             <li class="menu-item home"><a class="spec" href="/">首页</a></li>
-            <li class="menu-item projects"><a class="spec" href="/projects">项目</a></li>
+            <li class="menu-item projects"><a class="spec" href="/projects">输出</a></li>
             <li class="menu-item blog"><a class="spec" href="/blog/">博客</a></li>
             <li class="menu-item talks"><a class="spec" href="/about">关于我</a></li>
             <!--<li class="menu-item github"><a class="spec" href="http://github.com/GitBlackSir/" target="_blank">Github</a></li>-->
@@ -75,46 +75,43 @@
   <div class="hentry post">
     <div class="entry-summary">
       <ul class="project-list">
-        <li><a href="http://tinyurl.1024bit.io/" target="_blank">🌪️龙卷风·TinyURL</a>: 基于Python3 Tornado框架实现的B/S架构短网址系统接口。</li>
-        <li>将分布式ID生成算法(Twitter SnowFlake)生成的十进制ID转换为62进制后与用户输入的长网址在Redis数据库中K-V映射。为方便管理分布式进程，在启动接又进程时将进程参数 信息持久化于MySQL数据库，销毁接又进程时将此信息字段状态位置为0。</li>
+      <li>简介: 🌪️ TinyURL 基于 Python3 Tornado 框架实现的服务端 HTTP 接口</li>
+      
+      <li>职责: 后端接又开发 &amp; 前端 Demo 开发 &amp; 纂写部署说明文档</li>
+      <li>难点: SnowFlake全局唯一 ID 算法，异步 Redis MySQL 连接池提高并发，Redis 集群</li>
         <li><a href="http://tinyurl-api.1024bit.io/json&amp;get-id-url" target="_blank">获取全局唯一ID &amp; 短网址后缀</a> | <a href="http://tinyurl-api.1024bit.io/json&amp;convert=URL" target="_blank">长网址压缩</a> | <a href="http://tinyurl-api.1024bit.io/json&amp;restore=URL" target="_blank">短网址还原</a></li>
       </ul>
     </div>
-  </div>
-
-
-
-  <div class="hentry post project-batch-title">
-    <h2>Nokia 实习</h2>
-  </div>
-
-  <div class="hentry post">
-    <div class="entry-summary">
-      <ul class="project-list">
-        <li><a target="_blank">运维研发工程师</a></li>
-        <li>负责开发网元Log信息指标爬虫脚本，并针对数据抓取异常进行优化。 独立完成了70%Python脚本，部署了Zabbix监控系统，对Nginx进行了调优工作。 掌握了Python文件操作与异步编程，re正则模块与Linux下运维相关Shell命令。</li>
-      </ul>
+    
+    <h2>实习经历</h2>
     </div>
-  </div>
 
-  <!-- Other Projects -->
-  <div class="hentry post project-batch-title">
-    <h2>其他项目</h2>
-  </div>
-
-  <div class="hentry post">
-    <div class="entry-summary">
-      <ul class="project-list">
-        <li><a target="_blank">S:Tumblr_Spider</a>: 汤不热视频&amp;图片地址解析。基于Tumblr_v2 api实现的按用户名解析用户主页视频与图片地址，并用Python编码进行多线程下载。</li>
-        <li><a target="_blank">H:OCR数字识别</a>: C++、MFC.</li>
-        <li><a target="_blank">H:家庭智能网关邮件报警系统</a>: Java Server,Android App.</li>
-        <li><a target="_blank">H:Glof球场管理系统(CRM)</a>: Java EE.</li>
-        <li><a target="_blank">S:校内自助缴费App(大创)</a>: iOS App,后端云。</li>
-      </ul>
+    <div class="hentry post">
+      <div class="entry-summary">
+        <ul class="project-list">
+        <li><a target="_blank">上海诺基亚贝尔 后端开发工程师</a></li>
+          <li>简介:负责开发网元 Log 信息指标爬虫</li>
+          <li>职责:完成 Python 脚本，部署 Zabbix 监控系统</li>
+          <li>收获:掌握 Python 文件操作与 Linux 运维相关 Shell 命令，对 Nginx 进行了调优工作</li>
+        </ul>
+      </div>
+    
+    <h2>其他</h2>
     </div>
-  </div>
 
-</div>
+    <div class="hentry post">
+      <div class="entry-summary">
+        <ul class="project-list">
+          <li><a target="_blank">Tumblr_Spider</a>: Python3 多线程下载脚本，汤不热视频&amp;图片地址解析</li>
+          <li><a target="_blank">OCR数字识别</a>: C++、MFC</li>
+          <li><a target="_blank">家庭智能网关邮件报警系统</a>: Java Server、Android App</li>
+          <li><a target="_blank">Glof球场管理系统(CRM)</a>: Java EE</li>
+          <li><a target="_blank">校内自助缴费App(大创)</a>: iOS App、后端云存储</li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
 
 </div><!-- #content -->
 
@@ -123,17 +120,13 @@
       <div class="clear"></div>
     
       <div id="fotterLinks">
-        <a href="https://github.com/GitBlackSir/" alt="GitHub" target="_blank" >GitHub</a>
-<!--         |
-        <a href="https://www.gitbook.com/@gitblacksir" alt="GitBook" target="_blank" >GitBook</a> -->
-        |
-        <a href="http://twitter.com/GitBlackSir/" alt="Twitter" target="_blank" >Twitter</a>
+        <a href="https://github.com/baiyuNinja/" alt="GitHub" target="_blank" >GitHub</a>
         |
         <a href="mailto:admin@1024bit.io" alt="email" target="_blank">Email</a>
       </div>
 
       <div id="copyright">
-        &copy; 2017–2019 <a href="https://blog.1024bit.io/">1024Bit🦙</a>. All rights reserved.
+        &copy; 2017–2020 <a href="https://blog.1024bit.io/">1024Bit🦙</a>. All rights reserved.
       </div>
     </div><!-- .wrap -->
   </div><!-- #container -->

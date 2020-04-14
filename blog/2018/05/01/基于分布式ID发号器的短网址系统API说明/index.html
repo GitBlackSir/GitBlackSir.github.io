@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="shortcut icon" type="image/x-icon" href="/images/contents/fav.png" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://0.0.0.0:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8FID%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI%E8%AF%B4%E6%98%8E/" />
+  <meta property="og:url" content="http://localhost:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8FID%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI%E8%AF%B4%E6%98%8E/" />
   <meta property="og:title" content="基于分布式ID发号器的短网址系统API说明" />
   <meta property="og:description" content="<hr />
 
@@ -31,13 +31,13 @@
 <meta property="og:title" content="基于分布式ID发号器的短网址系统API说明" />
 <meta name="author" content="GitBlackSir" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="http://0.0.0.0:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8FID%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI%E8%AF%B4%E6%98%8E/" />
-<meta property="og:url" content="http://0.0.0.0:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8FID%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI%E8%AF%B4%E6%98%8E/" />
+<link rel="canonical" href="http://localhost:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8FID%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI%E8%AF%B4%E6%98%8E/" />
+<meta property="og:url" content="http://localhost:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8FID%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI%E8%AF%B4%E6%98%8E/" />
 <meta property="og:site_name" content="1024bit" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-05-01T00:00:00-05:00" />
+<meta property="article:published_time" content="2018-05-01T00:00:00+08:00" />
 <script type="application/ld+json">
-{"@context":"http://schema.org","@type":"BlogPosting","headline":"基于分布式ID发号器的短网址系统API说明","author":{"@type":"Person","name":"GitBlackSir"},"datePublished":"2018-05-01T00:00:00-05:00","dateModified":"2018-05-01T00:00:00-05:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://0.0.0.0:4000/images/contents/cat.png"},"name":"GitBlackSir"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8FID%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI%E8%AF%B4%E6%98%8E/"},"url":"http://0.0.0.0:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8FID%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI%E8%AF%B4%E6%98%8E/"}</script>
+{"@context":"http://schema.org","@type":"BlogPosting","headline":"基于分布式ID发号器的短网址系统API说明","author":{"@type":"Person","name":"GitBlackSir"},"datePublished":"2018-05-01T00:00:00+08:00","dateModified":"2018-05-01T00:00:00+08:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/images/contents/cat.png"},"name":"GitBlackSir"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8FID%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI%E8%AF%B4%E6%98%8E/"},"url":"http://localhost:4000/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8FID%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI%E8%AF%B4%E6%98%8E/"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -48,7 +48,7 @@
     <div id="header">
       <div id="branding">
         <h1 id="site-title">
-          <a href="/" title="1024bit" rel="Home">和你谈情怀</a>
+          <a href="/" title="1024bit" rel="Home">FIFO</a>
         </h1>
       </div>
       <div id="menu-primary" class="menu-container">
@@ -56,7 +56,7 @@
 
           <ul id="menu-primary-items">
             <li class="menu-item home"><a class="spec" href="/">首页</a></li>
-            <li class="menu-item projects"><a class="spec" href="/projects">项目</a></li>
+            <li class="menu-item projects"><a class="spec" href="/projects">输出</a></li>
             <li class="menu-item blog"><a class="spec" href="/blog/">博客</a></li>
             <li class="menu-item talks"><a class="spec" href="/about">关于我</a></li>
             <!--<li class="menu-item github"><a class="spec" href="http://github.com/GitBlackSir/" target="_blank">Github</a></li>-->
@@ -271,17 +271,13 @@ class Client(object):
       <div class="clear"></div>
     
       <div id="fotterLinks">
-        <a href="https://github.com/GitBlackSir/" alt="GitHub" target="_blank" >GitHub</a>
-<!--         |
-        <a href="https://www.gitbook.com/@gitblacksir" alt="GitBook" target="_blank" >GitBook</a> -->
-        |
-        <a href="http://twitter.com/GitBlackSir/" alt="Twitter" target="_blank" >Twitter</a>
+        <a href="https://github.com/baiyuNinja/" alt="GitHub" target="_blank" >GitHub</a>
         |
         <a href="mailto:admin@1024bit.io" alt="email" target="_blank">Email</a>
       </div>
 
       <div id="copyright">
-        &copy; 2017–2019 <a href="https://blog.1024bit.io/">1024Bit🦙</a>. All rights reserved.
+        &copy; 2017–2020 <a href="https://blog.1024bit.io/">1024Bit🦙</a>. All rights reserved.
       </div>
     </div><!-- .wrap -->
   </div><!-- #container -->
