@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>LeetCode-链表 - 1024bit</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css" />
+  <link rel="stylesheet" href="/js/icons/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/contents/fav.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://localhost:4000/blog/2020/04/16/LeetCode-%E9%93%BE%E8%A1%A8/" />
+  <meta property="og:title" content="LeetCode-链表" />
+  <meta property="og:description" content="<hr />
+
+" />
+  <meta property="og:image" content="http://1024bit.io/images/contents/cat.png" />
+  <script>
+    var trackOutboundLink = function(url) {
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': url,
+        'transport_type': 'beacon',
+        'event_callback': function(){document.location = url;}
+      });
+    }
+  </script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!-- Begin Jekyll SEO tag v2.2.3 -->
+<meta property="og:title" content="LeetCode-链表" />
+<meta name="author" content="baiyuNinja" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/blog/2020/04/16/LeetCode-%E9%93%BE%E8%A1%A8/" />
+<meta property="og:url" content="http://localhost:4000/blog/2020/04/16/LeetCode-%E9%93%BE%E8%A1%A8/" />
+<meta property="og:site_name" content="1024bit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-16T00:00:00+08:00" />
+<script type="application/ld+json">
+{"@context":"http://schema.org","@type":"BlogPosting","headline":"LeetCode-链表","author":{"@type":"Person","name":"baiyuNinja"},"datePublished":"2020-04-16T00:00:00+08:00","dateModified":"2020-04-16T00:00:00+08:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/images/contents/cat.png"},"name":"baiyuNinja"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2020/04/16/LeetCode-%E9%93%BE%E8%A1%A8/"},"url":"http://localhost:4000/blog/2020/04/16/LeetCode-%E9%93%BE%E8%A1%A8/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body class="">
+  <div id="container">
+    <div class="wrap">
+    <div id="header">
+      <div id="branding">
+        <h1 id="site-title">
+          <a href="/" title="1024bit" rel="Home">FIFO</a>
+        </h1>
+      </div>
+      <div id="menu-primary" class="menu-container">
+        <div class="menu">
+
+          <ul id="menu-primary-items">
+            <li class="menu-item home"><a class="spec" href="/">首页</a></li>
+            <li class="menu-item projects"><a class="spec" href="/projects">输出</a></li>
+            <li class="menu-item blog"><a class="spec" href="/blog/">博客</a></li>
+            <li class="menu-item talks"><a class="spec" href="/about">关于我</a></li>
+            <!--<li class="menu-item github"><a class="spec" href="http://github.com/GitBlackSir/" target="_blank">Github</a></li>-->
+          </ul>
+          
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div id="main">
+
+
+<div id="content">
+  <div class="hfeed">
+    <div class="hentry post">
+      <div class="post-content">
+        <div class="sticky-header">
+          <h1>LeetCode-链表</h1>
+          
+          <div class="byline">April 16, 2020 . <a href="/blog/categories.html#刷题" class="category">刷题</a></div>
+        </div>
+
+        <div id="toc" class="toc"></div>
+
+        <div class="entry-content">
+          <hr />
+
+<h5 id="链表定义">链表定义</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public class ListNode {
+     int val;
+     ListNode next;
+     ListNode(int x) { val = x; }
+}
+</code></pre>
+</div>
+
+<h5 id="206-反转链表"><a href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表</a></h5>
+
+<ul>
+  <li>1.建立 pre 节点 (记录 cur 左边的结点) 和 cur 节点</li>
+  <li>2.遍历并调整节点，因调整链表导致断链，用临时节点 next 记录 cur.next</li>
+  <li>4.返回pre节点</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while(cur != null){
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+}
+</code></pre>
+</div>
+
+<h5 id="92-反转链表-ii"><a href="https://leetcode-cn.com/problems/reverse-linked-list-ii/">92. 反转链表 II</a></h5>
+
+<ul>
+  <li>将 m-n 之间的指针翻转</li>
+  <li>和上题不同的是，此题需小新处理并记录好边界的值</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        if(m == n) return head;
+        var node = new ListNode(-1);
+        node.next = head;
+        var left = node;
+        var right = node;
+        
+        for(int i = 0; i &lt; m - 1; i++) left = left.next;
+        for(int i = 0; i &lt; n; i++) right = right.next;
+        
+        var leftTemp = left.next;
+        var rightTemp = right.next;
+        
+        ListNode pre = null;
+        var cur = leftTemp;
+        while(cur != rightTemp){
+            var next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        
+        leftTemp.next = rightTemp;
+        left.next = pre;
+        return node.next;
+    }
+}
+</code></pre>
+</div>
+
+<h5 id="24-两两交换链表中的节点"><a href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/">24. 两两交换链表中的节点</a></h5>
+
+<ul>
+  <li>1.建立虚拟头结点</li>
+  <li>2.遍历临时 cur 结点</li>
+  <li>3.循环内部建立 left right 指针</li>
+  <li>4.调整结点顺序最后移动 cur 结点</li>
+  <li>5.返回虚节点的下一节点</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
+    public ListNode swapPairs(ListNode head) {
+        ListNode node = new ListNode(-1);
+        node.next = head;
+        
+        for(var cur = node; cur.next != null &amp;&amp; cur.next.next != null; ){
+            var left = cur.next; var right = left.next;
+            
+            cur.next = right;
+            left.next = right.next;
+            right.next = left;
+            
+            cur = left;
+        }
+    return node.next;
+    }
+}
+</code></pre>
+</div>
+
+<h5 id="61-旋转链表"><a href="https://leetcode-cn.com/problems/rotate-list/">61. 旋转链表</a></h5>
+
+<ul>
+  <li>1.判断空节点</li>
+  <li>2.建立快慢指针</li>
+  <li>3.计算链表长度 len (有可能给的 k 很大，所以将  k %= len 来优化操作 )</li>
+  <li>4.快指针走 k 步</li>
+  <li>5.遍历快慢指针</li>
+  <li>6.调整节点并返回新的头结点</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
+    private int len = 0;
+    public ListNode rotateRight(ListNode head, int k) {
+        if(head == null) return null;
+        ListNode fir = head, sec = head;
+        for(var i = head; i !=null; i = i.next) len++;
+        
+        k %= len;
+        
+        while(k-- &gt; 0) fir = fir.next;
+        
+        while(fir.next != null){
+            fir = fir.next;
+            sec = sec.next;
+        }
+        
+        fir.next = head;
+        head = sec.next;
+        sec.next = null;
+        
+        return head;
+    }
+}
+</code></pre>
+</div>
+
+<h5 id="237-删除链表中的节点"><a href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/">237. 删除链表中的节点</a></h5>
+
+<p>题目只给了要删除节点的指针</p>
+
+<ul>
+  <li>1.将此节点的val修改为下一节点的val</li>
+  <li>2.删除下一个节点</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+}
+</code></pre>
+</div>
+
+<h5 id="19-删除链表的倒数第n个节点"><a href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/">19. 删除链表的倒数第N个节点</a></h5>
+
+<ul>
+  <li>1.建立虚拟头结点</li>
+  <li>2.fir指针 先走 n 步</li>
+  <li>3.fir 和 sec 同时走，fir指针走道链表尾部结束</li>
+  <li>4.删除sec指针后的结点</li>
+  <li>5.返回虚拟头结点的下一结点</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode node = new ListNode(-1);
+        node.next = head;
+        
+        ListNode fir = node;
+        ListNode sec = node;
+        
+        while(n-- &gt; 0) fir = fir.next;
+        
+        while(fir.next != null){
+            fir = fir.next;
+            sec = sec.next;
+        }
+        sec.next = sec.next.next;
+        return node.next;    
+    }
+}
+</code></pre>
+</div>
+
+<h5 id="83-删除排序链表中的重复元素"><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/">83. 删除排序链表中的重复元素</a></h5>
+
+<ul>
+  <li>1.先用node记录头head头结点点</li>
+  <li>2.遍历head节点，遇到当前节点val等于下一节点val 就删除下一节点，否则移动head节点</li>
+  <li>3.返回node节点</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode node = head;
+        while(head != null){
+            if(head.next != null &amp;&amp; head.val == head.next.val)
+                head.next = head.next.next;
+            else head = head.next;
+        }
+    return node;
+    }
+}
+</code></pre>
+</div>
+
+<h5 id="160-相交链表"><a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/">160. 相交链表</a></h5>
+
+<ul>
+  <li>1.假设 headA 到相交点距离为 a，headB 到相交点距离为 b</li>
+  <li>2.假设相交点到链表尾部距离为 c</li>
+  <li>3.那么两个链表遍历 a + b + c 步他们一定相遇 ( 如果不想交 遍历最后也都为null )</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode n1 = headA, n2 = headB;
+        while(n1 != n2){
+            if(n1 == null) n1 = headB;
+            else n1 = n1.next;
+                
+            if(n2 == null) n2 = headA;
+            else n2 = n2.next;
+        }
+        return n1;
+    }
+}
+</code></pre>
+</div>
+
+<h5 id="142-环形链表-ii"><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">142. 环形链表 II</a></h5>
+
+<p><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/huan-xing-lian-biao-ii-by-leetcode/">官网题解</a></p>
+
+<ul>
+  <li>1.先找快慢指针相交点</li>
+  <li>2.找到后将快指针指向头结点，不分快慢同时遍历找到切点
+    <div class="highlighter-rouge"><pre class="highlight"><code>public class Solution {
+  public ListNode detectCycle(ListNode head) {
+      ListNode fast = head, slow = head;
+      while(fast != null &amp;&amp; fast.next != null){
+          slow = slow.next;
+          fast = fast.next.next;
+          if(fast == slow){
+              fast = head;
+              while(fast != slow){
+                  fast = fast.next;
+                  slow = slow.next;
+              }
+              return fast;
+          }
+      }
+      return null;
+  }
+}
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h5 id="148-排序链表"><a href="https://leetcode-cn.com/problems/sort-list/">148. 排序链表</a></h5>
+
+<ul>
+  <li>1.自底向上归并，反之有递归栈不符合要求</li>
+  <li>2.明日再淦！</li>
+</ul>
+
+        </div>
+
+        <!-- 
+ -->
+      </div>
+    </div>
+  </div>
+</div><!-- #content -->
+
+      </div><!-- #main -->
+    
+      <div class="clear"></div>
+    
+      <div id="fotterLinks">
+        <a href="https://github.com/baiyuNinja/" alt="GitHub" target="_blank" >GitHub</a>
+        |
+        <a href="mailto:admin@1024bit.io" alt="email" target="_blank">Email</a>
+      </div>
+
+      <div id="copyright">
+        &copy; 2017–2020 <a href="https://blog.1024bit.io/">1024Bit🦙</a>. All rights reserved.
+      </div>
+    </div><!-- .wrap -->
+  </div><!-- #container -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="/js/toc/toc.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.toc').toc({
+        title: '',
+        listType: 'ol',
+        minimumHeaders: 2,
+        headers: 'h2, h3, h4, h5, h6',
+        linkHere: true,
+        linkHereTitle: 'Link here',
+        backToTop: true,
+        backToTopId: 'toc',
+        backToTopTitle: 'Back to Table of Contents',
+      });
+      $('.jekyll-toc-header a.jekyll-toc-link-here span.jekyll-toc-icon').addClass('icon icon-link');
+      $('.jekyll-toc-header a.jekyll-toc-back-to-top span.jekyll-toc-icon').addClass('icon icon-chevron-up');
+    });
+  </script>
+</body>
+</html>
+
