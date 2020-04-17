@@ -122,7 +122,7 @@
 
 <ul>
   <li>将 m-n 之间的指针翻转</li>
-  <li>和上题不同的是，此题需小新处理并记录好边界的值</li>
+  <li>和上题不同的是，此题需小心处理并记录好边界的值</li>
 </ul>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
@@ -353,7 +353,27 @@
 <ul>
   <li>1.自底向上归并，反之有递归栈不符合要求</li>
   <li>2.明日再淦！</li>
+  <li>3.来了，Bottom-Up 归并链表太难写了，再修炼修炼，先用优先级队列</li>
 </ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
+    public ListNode sortList(ListNode head) {
+        Queue&lt;Integer&gt; q = new PriorityQueue&lt;&gt;();
+        var cur = head;
+        while(cur != null){
+            q.add(cur.val);
+            cur = cur.next;
+        }
+        cur = head;
+        while(cur != null){
+            cur.val = q.poll();
+            cur = cur.next;
+        }
+        return head;
+    }
+}
+</code></pre>
+</div>
 
         </div>
 
