@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="cn">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>LeetCode-树 - 1024bit</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/syntax.css" />
+  <link rel="stylesheet" href="/js/icons/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/contents/fav.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://localhost:4000/blog/2020/04/17/LeetCode-%E6%A0%91/" />
+  <meta property="og:title" content="LeetCode-树" />
+  <meta property="og:description" content="<hr />
+
+" />
+  <meta property="og:image" content="http://1024bit.io/images/contents/cat.png" />
+  <script>
+    var trackOutboundLink = function(url) {
+      gtag('event', 'click', {
+        'event_category': 'outbound',
+        'event_label': url,
+        'transport_type': 'beacon',
+        'event_callback': function(){document.location = url;}
+      });
+    }
+  </script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!-- Begin Jekyll SEO tag v2.2.3 -->
+<meta property="og:title" content="LeetCode-树" />
+<meta name="author" content="baiyuNinja" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/blog/2020/04/17/LeetCode-%E6%A0%91/" />
+<meta property="og:url" content="http://localhost:4000/blog/2020/04/17/LeetCode-%E6%A0%91/" />
+<meta property="og:site_name" content="1024bit" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-17T00:00:00+08:00" />
+<script type="application/ld+json">
+{"@context":"http://schema.org","@type":"BlogPosting","headline":"LeetCode-树","author":{"@type":"Person","name":"baiyuNinja"},"datePublished":"2020-04-17T00:00:00+08:00","dateModified":"2020-04-17T00:00:00+08:00","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/images/contents/cat.png"},"name":"baiyuNinja"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/2020/04/17/LeetCode-%E6%A0%91/"},"url":"http://localhost:4000/blog/2020/04/17/LeetCode-%E6%A0%91/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body class="">
+  <div id="container">
+    <div class="wrap">
+    <div id="header">
+      <div id="branding">
+        <h1 id="site-title">
+          <a href="/" title="1024bit" rel="Home">🐭</a>
+        </h1>
+      </div>
+      <div id="menu-primary" class="menu-container">
+        <div class="menu">
+
+          <ul id="menu-primary-items">
+            <li class="menu-item home"><a class="spec" href="/">首页</a></li>
+            <li class="menu-item projects"><a class="spec" href="/projects">项目</a></li>
+            <li class="menu-item blog"><a class="spec" href="/blog/">博客</a></li>
+            <li class="menu-item talks"><a class="spec" href="/about">关于我</a></li>
+            <!--<li class="menu-item github"><a class="spec" href="http://github.com/GitBlackSir/" target="_blank">Github</a></li>-->
+          </ul>
+          
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div id="main">
+
+
+<div id="content">
+  <div class="hfeed">
+    <div class="hentry post">
+      <div class="post-content">
+        <div class="sticky-header">
+          <h1>LeetCode-树</h1>
+          
+          <div class="byline">April 17, 2020 . <a href="/blog/categories.html#刷题" class="category">刷题</a></div>
+        </div>
+
+        <div id="toc" class="toc"></div>
+
+        <div class="entry-content">
+          <hr />
+
+<h5 id="树定义">树定义</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> public class TreeNode {
+     int val;
+     TreeNode left;
+     TreeNode right;
+     TreeNode(int x) { val = x; }
+}
+</code></pre>
+</div>
+
+<h5 id="98-验证二叉搜索树"><a href="https://leetcode-cn.com/problems/validate-binary-search-tree/">98. 验证二叉搜索树</a></h5>
+
+<ul>
+  <li>1.递归查找子树是否符合 BST 的定义</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
+    public boolean isValidBST(TreeNode root) {
+        return dfs(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    
+    private boolean dfs(TreeNode node, long min, long max){
+        if(node == null) return true;
+        if(node.val &lt;= min || node.val &gt;= max) return false;
+        return dfs(node.left, min, node.val) &amp;&amp; dfs(node.right, node.val, max);
+    }
+}
+</code></pre>
+</div>
+
+<h5 id="94-二叉树的中序遍历"><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94. 二叉树的中序遍历</a></h5>
+
+<ul>
+  <li>1.非递归栈迭代</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
+    public List&lt;Integer&gt; inorderTraversal(TreeNode root) {
+        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+        Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;();
+        
+        while(root != null ||  !stack.empty()){
+            while(root != null){
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            list.add(root.val);
+            root = root.right;
+        }
+        return list;
+    }
+}
+</code></pre>
+</div>
+
+<h4 id="101-对称二叉树"><a href="https://leetcode-cn.com/problems/symmetric-tree/">101. 对称二叉树</a></h4>
+
+<ul>
+  <li>1.队列迭代</li>
+  <li>2.每次取出两个节点比较，并将两个节点的左右节点反序插入队列</li>
+  <li>3.比较失败就返回 false</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        Queue&lt;TreeNode&gt; q = new LinkedList&lt;&gt;();
+        q.add(root);q.add(root);
+        while(!q.isEmpty()){
+            TreeNode t1 = q.poll();
+            TreeNode t2 = q.poll();
+            if(t1 == null &amp;&amp; t2 == null) continue;
+            if(t1 == null || t2 == null || t1.val != t2.val) 
+                return false;
+            q.add(t1.left);
+            q.add(t2.right);
+            q.add(t1.right);
+            q.add(t2.left);
+        }
+        return true;
+    }
+}
+</code></pre>
+</div>
+
+        </div>
+
+        <!-- 
+ -->
+      </div>
+    </div>
+  </div>
+</div><!-- #content -->
+
+      </div><!-- #main -->
+    
+      <div class="clear"></div>
+    
+      <div id="fotterLinks">
+        <a href="https://github.com/baiyuNinja/" alt="GitHub" target="_blank" >GitHub</a>
+        |
+        <a href="mailto:admin@1024bit.io" alt="email" target="_blank">Email</a>
+      </div>
+    
+      <div id="copyright">
+        &copy; 2017–2020 <a href="https://blog.1024bit.io/"> 1024Bit 🐭</a>
+      </div>
+    </div><!-- .wrap -->
+  </div><!-- #container -->
+
+  <script src="https://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+  <script src="/js/toc/toc.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.toc').toc({
+        title: '',
+        listType: 'ol',
+        minimumHeaders: 2,
+        headers: 'h2, h3, h4, h5, h6',
+        linkHere: true,
+        linkHereTitle: 'Link here',
+        backToTop: true,
+        backToTopId: 'toc',
+        backToTopTitle: 'Back to Table of Contents',
+      });
+      $('.jekyll-toc-header a.jekyll-toc-link-here span.jekyll-toc-icon').addClass('icon icon-link');
+      $('.jekyll-toc-header a.jekyll-toc-back-to-top span.jekyll-toc-icon').addClass('icon icon-chevron-up');
+    });
+  </script>
+</body>
+</html>
+
