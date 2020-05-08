@@ -63,50 +63,45 @@
 
 <div id="content">
   <div class="hfeed">
-
   <div class="hentry post project-batch-title">
-    <h2>本科毕业设计</h2>
+  <h2>个人项目</h2>
   </div>
-
   <div class="hentry post">
     <div class="entry-summary">
       <ul class="project-list">
-      <li>简介: 🌪️ TinyURL 基于 Python3 Tornado 框架实现的服务端 HTTP 接口</li>
+
+          <li><font color="red">(已设计 未编码)即时通讯 IM: </font>Go，Gin，ProtoBuf，MySQL，Redis，RebbitMQ，Dokcer，RESTful，Nginx<p>用户注册、登录、好友链等功能做出 RESTful 服务对外暴露HTTP接口，服务端架构解耦为连接机、转发机、Session 管理机，消息支持离线 (CAS机制防止离线消 息重复推送) 同时系统对消息的顺序性、唯一性、安全性、多设备一致性做了保障</p>
+          </li>
+          
+          <li><font color="green">本科毕设 分布式短网址系统TinyURL: </font>Python3，Tornado，SnowFlake，MySQL，Redis，Docker，Nginx<p>基于 Python Tornado 框架实现的分布式短网址 HTTP 接口，使用 SnowFlake 算法生成全局唯一ID，Redis，MySQL异步访问，对 Redis 做了高可用与缓存穿透防护<a href="http://tinyurl-api.1024bit.io/json&amp;get-id-url" target="_blank">获取全局唯一ID &amp; 短网址后缀</a> | <a href="http://tinyurl-api.1024bit.io/json&amp;convert=URL" target="_blank">长网址压缩</a> | <a href="http://tinyurl-api.1024bit.io/json&amp;restore=URL" target="_blank">短网址还原</a></p>
+          </li>
       
-      <li>职责: 后端接又开发 &amp; 前端 Demo 开发 &amp; 纂写部署说明文档</li>
-      <li>难点: SnowFlake全局唯一 ID 算法，异步 Redis MySQL 连接池提高并发，Redis 集群</li>
-        <li><a href="http://tinyurl-api.1024bit.io/json&amp;get-id-url" target="_blank">获取全局唯一ID &amp; 短网址后缀</a> | <a href="http://tinyurl-api.1024bit.io/json&amp;convert=URL" target="_blank">长网址压缩</a> | <a href="http://tinyurl-api.1024bit.io/json&amp;restore=URL" target="_blank">短网址还原</a></li>
+          <li><font color="green">图片社交 FlaskInstagram: </font>Python3, Flask, HTML, CSS, JS, MySQL, 七牛云图床, Nginx</li>
+          <li><font color="green">下载脚本 Tumblr_Spider: </font>Python3多线程下载脚本，汤不热视频&amp;图片地址解析</li>
+          <li><font color="green">数字识别 OCR: </font>C++, MFC</li>
+          <li><font color="green">家庭智能网关邮件报警系统: </font>Java Server, Android App</li>
+          <li><font color="green">Glof球场管理系统 (CRM): </font>Java EE, HTML, CSS, JS</li>
+          <li><font color="green">校内自助缴费 App: </font>iOS App, 后端云存储 (大学生创新创业大赛)</li>
+          <li><font color="green">家庭智能网关邮件报警系统: </font>Java Server, Android App</li>
+          <li><font color="green">静态资源缓存服务器 MyHTTP: </font>Unix系统下基于TCP传输的HTTP服务器, 支持GET方法并解析了HTML, CSS, JS文件</li>
       </ul>
     </div>
-    
-    <h2>实习经历</h2>
+  
+  
+  <h2>实习经历</h2>
     </div>
-
     <div class="hentry post">
       <div class="entry-summary">
         <ul class="project-list">
         <li><a target="_blank">上海诺基亚贝尔 后端开发工程师</a></li>
-          <li>简介:负责开发网元 Log 信息指标爬虫</li>
-          <li>职责:完成 Python 脚本，部署 Zabbix 监控系统</li>
-          <li>收获:掌握 Python 文件操作与 Linux 运维相关 Shell 命令，对 Nginx 进行了调优工作</li>
+          <p>简介:负责开发网元日志信息指标爬虫</p>
+          <p>完成 Python 脚本，部署 Zabbix 监控系统</p>
+          <p>收获:掌握 Python 文件操作与 Linux 运维相关 Shell 命令，对 Nginx 进行了调优工作</p>
         </ul>
       </div>
-    
-    <h2>其他</h2>
+      
     </div>
 
-    <div class="hentry post">
-      <div class="entry-summary">
-        <ul class="project-list">
-          <li><a target="_blank">Tumblr_Spider</a>: Python3 多线程下载脚本，汤不热视频&amp;图片地址解析</li>
-          <li><a target="_blank">OCR数字识别</a>: C++、MFC</li>
-          <li><a target="_blank">家庭智能网关邮件报警系统</a>: Java Server、Android App</li>
-          <li><a target="_blank">Glof球场管理系统(CRM)</a>: Java EE</li>
-          <li><a target="_blank">校内自助缴费App(大创)</a>: iOS App、后端云存储</li>
-        </ul>
-      </div>
-    </div>
-    
   </div>
 
 </div><!-- #content -->
