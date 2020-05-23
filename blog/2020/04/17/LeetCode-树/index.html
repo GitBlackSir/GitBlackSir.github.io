@@ -82,12 +82,12 @@
 
 <h5 id="树定义">树定义</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> public class TreeNode {
+<div class="highlighter-rouge"><pre class="highlight"><code>struct TreeNode {
      int val;
-     TreeNode left;
-     TreeNode right;
-     TreeNode(int x) { val = x; }
-}
+     TreeNode *left;
+     TreeNode *right;
+     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
 </code></pre>
 </div>
 
@@ -95,76 +95,156 @@
 
 <ul>
   <li>1.递归查找子树是否符合 BST 的定义</li>
+  <li>2.利用搜索树的定义自上而下去做，因为有序，所以每个节点值有确定的范围</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
-    public boolean isValidBST(TreeNode root) {
-        return dfs(root, Long.MIN_VALUE, Long.MAX_VALUE);
-    }
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="n">isValidBST</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">INT_MIN</span><span class="p">,</span> <span class="n">INT_MAX</span><span class="p">);</span>
+    <span class="p">}</span>
     
-    private boolean dfs(TreeNode node, long min, long max){
-        if(node == null) return true;
-        if(node.val &lt;= min || node.val &gt;= max) return false;
-        return dfs(node.left, min, node.val) &amp;&amp; dfs(node.right, node.val, max);
-    }
-}
+    <span class="kt">bool</span> <span class="n">dfs</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">min</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">max</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> 
+          <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>        
+        <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">min</span> <span class="o">||</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span> 
+          <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        
+        <span class="k">return</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">min</span><span class="p">,</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">-</span> <span class="mi">1ll</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">+</span> <span class="mi">1ll</span><span class="p">,</span> <span class="n">max</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 </code></pre>
 </div>
 
 <h5 id="94-二叉树的中序遍历"><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/">94. 二叉树的中序遍历</a></h5>
 
 <ul>
-  <li>1.非递归栈迭代</li>
+  <li>1.用栈模拟递归栈 🐼</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
-    public List&lt;Integer&gt; inorderTraversal(TreeNode root) {
-        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
-        Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;();
-        
-        while(root != null ||  !stack.empty()){
-            while(root != null){
-                stack.push(root);
-                root = root.left;
-            }
-            root = stack.pop();
-            list.add(root.val);
-            root = root.right;
-        }
-        return list;
-    }
-}
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="n">stack</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">*&gt;</span> <span class="n">s</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">inorderTraversal</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// dfs(root);
+</span>        <span class="c1">// return ans;
+</span>        <span class="k">auto</span> <span class="n">node</span> <span class="o">=</span> <span class="n">root</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">node</span> <span class="o">||</span> <span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">s</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// void dfs(TreeNode* root) {
+</span>    <span class="c1">//     if (!root) return;
+</span>    <span class="c1">//     dfs(root-&gt;left);
+</span>    <span class="c1">//     ans.push_back(root-&gt;val);
+</span>    <span class="c1">//     dfs(root-&gt;right);
+</span>    <span class="c1">// }
+</span><span class="p">};</span>
 </code></pre>
 </div>
 
-<h4 id="101-对称二叉树"><a href="https://leetcode-cn.com/problems/symmetric-tree/">101. 对称二叉树</a></h4>
+<h5 id="101-对称二叉树"><a href="https://leetcode-cn.com/problems/symmetric-tree/">101. 对称二叉树</a></h5>
 
 <ul>
-  <li>1.队列迭代</li>
-  <li>2.每次取出两个节点比较，并将两个节点的左右节点反序插入队列</li>
-  <li>3.比较失败就返回 false</li>
+  <li>1.栈迭代</li>
+  <li>2.左子树左中右遍历，右子树右中左遍历</li>
+  <li>3.注意有无多余节点，退栈时值不等那么就不对称</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="n">isSymmetric</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="n">stack</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">*&gt;</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">;</span>
+        <span class="k">auto</span> <span class="n">l</span> <span class="o">=</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">||</span> <span class="n">r</span> <span class="o">||</span> <span class="o">!</span><span class="n">left</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">||</span> <span class="o">!</span><span class="n">right</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">left</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="n">l</span> <span class="o">=</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+                <span class="n">right</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">r</span><span class="o">=</span> <span class="n">r</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">l</span> <span class="o">||</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="n">left</span><span class="p">.</span><span class="n">top</span><span class="p">(),</span> <span class="n">left</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">right</span><span class="p">.</span><span class="n">top</span><span class="p">(),</span> <span class="n">right</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">!=</span> <span class="n">r</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+            
+            <span class="n">l</span> <span class="o">=</span> <span class="n">l</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span> <span class="n">r</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+<ul>
+  <li>1.递归</li>
+  <li>2.自上而下比较值是否相同</li>
+  <li>3.注意递归终止条件 比较秀，只要有一方节点为空了，那么判断两方节点是否都为空，除此之外的情况就不对称了</li>
 </ul>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>class Solution {
-    public boolean isSymmetric(TreeNode root) {
-        Queue&lt;TreeNode&gt; q = new LinkedList&lt;&gt;();
-        q.add(root);q.add(root);
-        while(!q.isEmpty()){
-            TreeNode t1 = q.poll();
-            TreeNode t2 = q.poll();
-            if(t1 == null &amp;&amp; t2 == null) continue;
-            if(t1 == null || t2 == null || t1.val != t2.val) 
-                return false;
-            q.add(t1.left);
-            q.add(t2.right);
-            q.add(t1.right);
-            q.add(t2.left);
-        }
-        return true;
+public:
+    bool isSymmetric(TreeNode* root) {
+        if (!root) return true;
+        return dfs(root-&gt;left, root-&gt;right);
     }
-}
+    
+    bool dfs(TreeNode* l, TreeNode* r) {
+        if (!l || !r) return !l &amp;&amp; !r;
+        return l-&gt;val == r-&gt;val &amp;&amp; dfs(l-&gt;left, r-&gt;right) &amp;&amp; dfs(l-&gt;right, r-&gt;left);
+    }
+};
 </code></pre>
 </div>
+
+<h5 id="102-二叉树的层序遍历"><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/">102. 二叉树的层序遍历</a></h5>
+
+<ul>
+  <li>用队列模拟</li>
+  <li>代码中循环当前层的节点数次，目的是看当前循环的节点有无左右子节点
+    <div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">levelOrder</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">root</span><span class="p">)</span> <span class="k">return</span> <span class="p">{};</span>
+      <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">ans</span><span class="p">;</span>
+      <span class="n">queue</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">*&gt;</span> <span class="n">q</span><span class="p">;</span>
+      <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+      <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+          <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+          <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">level</span><span class="p">;</span>
+          <span class="k">while</span> <span class="p">(</span><span class="n">len</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">auto</span> <span class="n">node</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">();</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+              <span class="n">level</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">);</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">);</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">)</span> <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">level</span><span class="p">);</span> 
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h5 id="105-从前序与中序遍历序列构造二叉树"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105. 从前序与中序遍历序列构造二叉树</a></h5>
+
+<h5 id="236-二叉树的最近公共祖先"><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/">236. 二叉树的最近公共祖先</a></h5>
+
+<h5 id="543-二叉树的直径"><a href="https://leetcode-cn.com/problems/diameter-of-binary-tree/">543. 二叉树的直径</a></h5>
+
+<h5 id="124-二叉树中的最大路径和"><a href="https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/">124. 二叉树中的最大路径和</a></h5>
+
+<h5 id="173-二叉搜索树迭代器"><a href="https://leetcode-cn.com/problems/binary-search-tree-iterator/">173. 二叉搜索树迭代器</a></h5>
+
+<h5 id="297-二叉树的序列化与反序列化"><a href="https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/">297. 二叉树的序列化与反序列化</a></h5>
 
         </div>
 
