@@ -1,0 +1,28 @@
+highlighter: rouge
+permalink: none
+kramdown:
+  input: GFM
+  hard_wrap: false
+repository: baiyuNinja/baiyuNinja.github.io
+plugins:
+  - jemoji
+  # - jekyll-sitemap
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      permalink: /blog/:year/:month/:day/:title/
+title: 1024bit
+description: 
+url: https://blog.1024bit.io
+author: baiyuNinja
+twitter:
+username: baiyuNinja
+logo: images/contents/cat.png
+social:
+  name: baiyuNinja
+  links:
