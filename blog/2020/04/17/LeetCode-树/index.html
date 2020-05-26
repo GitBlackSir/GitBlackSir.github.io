@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="cn">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?366dda37438c4b50e766696021c18cef";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>LeetCode-树 - 1024bit</title>
+  <title>LeetCode-树</title>
   <link rel="stylesheet" type="text/css" href="/css/style.css" />
   <link rel="stylesheet" type="text/css" href="/css/syntax.css" />
   <link rel="stylesheet" href="/js/icons/style.css">
@@ -26,8 +35,9 @@
       });
     }
   </script>
-  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  <!-- <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
   <!-- Begin Jekyll SEO tag v2.2.3 -->
+<title>LeetCode-树 | 1024bit</title>
 <meta property="og:title" content="LeetCode-树" />
 <meta name="author" content="baiyuNinja" />
 <meta property="og:locale" content="en_US" />
@@ -57,14 +67,13 @@
             <li class="menu-item home"><a class="spec" href="/">首页</a></li>
             <li class="menu-item projects"><a class="spec" href="/projects">项目</a></li>
             <li class="menu-item blog"><a class="spec" href="/blog/">博客</a></li>
-            <li class="menu-item talks"><a class="spec" href="/about">关于我</a></li>
+            <li class="menu-item about"><a class="spec" href="/about">关于我</a></li>
           </ul>
         </div>
       </div>
       <div class="clear"></div>
     </div>
     <div id="main">
-
 <div id="content">
   <div class="hfeed">
     <div class="hentry post">
@@ -72,11 +81,9 @@
         <div class="sticky-header">
           <h1>LeetCode-树</h1>
           
-          <div class="byline"> 2020 April 17 . <a href="/blog/categories.html#LeetCode" class="category">LeetCode</a></div>
+          <div class="byline"> 2020.04.17 <a href="/blog/categories.html#LeetCode" class="category">LeetCode</a></div>
         </div>
-
         <div id="toc" class="toc"></div>
-
         <div class="entry-content">
           <hr />
 
@@ -234,6 +241,32 @@ public:
   </li>
 </ul>
 
+<h5 id="面试题26-树的子结构"><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/">面试题26. 树的子结构</a></h5>
+
+<ul>
+  <li>1.递归前序遍历实现</li>
+  <li>2.遍历A树，若找到A子结点 == B根结点，那么再判断当前两颗树结点是否重合</li>
+</ul>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="n">isSubStructure</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">B</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">A</span> <span class="o">||</span> <span class="o">!</span><span class="n">B</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">==</span> <span class="n">B</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dfs</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">))</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">isSubStructure</span><span class="p">(</span><span class="n">A</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="o">||</span> <span class="n">isSubStructure</span><span class="p">(</span><span class="n">A</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">B</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="kt">bool</span> <span class="n">dfs</span><span class="p">(</span><span class="n">TreeNode</span><span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="n">TreeNode</span><span class="o">*</span> <span class="n">B</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">B</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">A</span> <span class="o">&amp;&amp;</span> <span class="n">B</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="o">-&gt;</span><span class="n">val</span> <span class="o">!=</span> <span class="n">B</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">dfs</span><span class="p">(</span><span class="n">A</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">,</span> <span class="n">B</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">dfs</span><span class="p">(</span><span class="n">A</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">,</span> <span class="n">B</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">);</span>
+    <span class="p">}</span>  
+<span class="p">};</span>
+</code></pre>
+</div>
+
 <h5 id="105-从前序与中序遍历序列构造二叉树"><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105. 从前序与中序遍历序列构造二叉树</a></h5>
 
 <h5 id="236-二叉树的最近公共祖先"><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/">236. 二叉树的最近公共祖先</a></h5>
@@ -247,14 +280,12 @@ public:
 <h5 id="297-二叉树的序列化与反序列化"><a href="https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/">297. 二叉树的序列化与反序列化</a></h5>
 
         </div>
-
         <!-- 
  -->
       </div>
     </div>
   </div>
 </div><!-- #content -->
-
       </div><!-- #main -->
     
       <div class="clear"></div>
@@ -292,4 +323,3 @@ public:
   </script>
 </body>
 </html>
-

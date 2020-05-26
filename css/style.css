@@ -42,7 +42,7 @@ body {
   background-color: #fff;
 }
 a, a:visited {
-  color: #4e2a8e;
+  color: #009688;
   text-decoration: underline;
 }
 a.spec, a.spec:visited {
@@ -382,13 +382,13 @@ blockquote p:last-child, blockquote pre:last-child {
 code {
   padding: 1px 3px;
   color: #555;
-  background: #fff8ed;
-  border:1px solid #faefe0;
+  background: #ffffff;
+  border:1px solid #4cafac;
 }
 pre {
   padding: 15px 20px;
-  background: #fff8ed;
-  border: 1px solid #f6e4cc;
+  background: #4cafac1f;
+  border: 1px solid #4cafac;
 }
 pre code {
   padding: 0;
@@ -520,7 +520,7 @@ iframe.video { border:0; }
 
 body.home             div.menu li.home            a,
 body.projects         div.menu li.projects        a,
-body.talks            div.menu li.talks           a,
+body.about            div.menu li.about           a,
 body.blog             div.menu li.blog            a {
   color: #aaa;
 }
@@ -557,7 +557,7 @@ body.blog             div.menu li.blog            a {
 #header img { max-width: 100%; }
 
 #header {
-  padding-bottom: 10px;
+  padding-bottom: 0px;
 }
 
 #site-description {
