@@ -5,7 +5,7 @@ layout: default
 ---
 
 <div class="hfeed">
-  <div class="hentry post project-batch-title"><h3 ><center>烫烫烫</center></h3> </div>
+  <div class="hentry post project-batch-title"><h3><center>一路尋尋覓覓 那何曾有過放棄</center></h3></div>
   <div class="hentry post no-border">
     <img src="/images/contents/cat.png" alt="1024bit" class="archive-thumbnail home-thumbnail" width="160" height="200" />
     <div class="entry-summary">
