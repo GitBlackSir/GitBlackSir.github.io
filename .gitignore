@@ -4,3 +4,4 @@ _import
 .jekyll-metadata
 .bundle
 vendor
+local.sh
