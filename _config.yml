@@ -1,5 +1,6 @@
 highlighter: rouge
 permalink: none
+exclude: [local.sh, docker.sh, Rakefile, Gemfile, Gemfile.lock, README.md, vendor]
 kramdown:
   input: GFM
   hard_wrap: false
@@ -26,3 +27,5 @@ logo: images/contents/cat.png
 social:
   name: baiyuNinja
   links:
+
+
