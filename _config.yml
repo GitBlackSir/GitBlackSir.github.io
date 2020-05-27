@@ -23,9 +23,17 @@ url: https://blog.1024bit.io
 author: baiyuNinja
 twitter:
 username: baiyuNinja
-logo: images/contents/cat.png
+
 social:
   name: baiyuNinja
   links:
 
+cdn-url:
+  logo: /images/contents/cat.png
 
+string:
+  home-name: 🐭
+  index: 一路尋尋覓覓 那何曾有過放棄
+  projects: 實習 / 項目
+  blog: 🔍 <a href="/blog/categories.html">分類</a>
+  about: Hello it's me ~
