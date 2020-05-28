@@ -5,16 +5,6 @@ layout: projects
 ---
 ---
 
-- ToDo List
-```
-近期任务：MUST Final Report, 整理优化之前的项目
-开通 UCloud 对象存储
-修改联系方式二维码
-将静态资源放至UCloud
-```
-
----
-
 ### **实习**
 
 #### 好未来教育集团 @服务端开发工程师
