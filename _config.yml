@@ -43,7 +43,11 @@ info-url:
   domain: https://github.com/baiyuNinja
 
 cdn-url:
-  logo: /images/contents/cat.png
+  jquery-min: http://1024bit.cn-bj.ufileos.com/blog%2Fstatic%2Fjquery.min.js
+  toc-js: http://1024bit.cn-bj.ufileos.com/blog%2Fstatic%2Ftoc.js
+  css: http://1024bit.cn-bj.ufileos.com/blog%2Fstatic%2Fstyle.css
+  logo: http://1024bit.cn-bj.ufileos.com/blog%2Fimages%2Fcat%2Fcat.png
+  fav: http://1024bit.cn-bj.ufileos.com/blog%2Fimages%2Fcat%2Ffav.png
 
 string:
   first-year: 2017
