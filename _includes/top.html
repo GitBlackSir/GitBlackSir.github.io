@@ -4,14 +4,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>{% if page.title %}{{ page.title }}{% endif %}</title>
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <link rel="stylesheet" type="text/css" href={{ site.cdn-url.css }} />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="shortcut icon" type="image/x-icon" href="/images/contents/fav.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url}}" />
+  <link rel="shortcut icon" type="image/x-icon" href={{ site.cdn-url.fav }} />
+<!--   <meta property="og:type" content="website" /> -->
+  <!-- <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url}}" /> -->
   {% if page.title %}<meta property="og:title" content="{{ page.title }}" />{% endif %}
-  {% if page.excerpt %}<meta property="og:description" content="{{ page.excerpt }}" />{% endif %}
-  <meta property="og:image" content="{% if page.preview_image %}{{ page.preview_image }}{% else %}http://1024bit.io/images/contents/cat.png{% endif %}" />
+  {% if page.excerpt %}<meta property="og:description" content="{{ page.excerpt }}" />{% endif %}<!--   <meta property="og:image" content="{% if page.preview_image %}{{ page.preview_image }}{% else %}http://1024bit.io/images/contents/cat.png{% endif %}" /> -->
   <script>
     var trackOutboundLink = function(url) {
       gtag('event', 'click', {
