@@ -1,15 +1,19 @@
 highlighter: rouge
 permalink: none
+
 exclude: [LICENSE, local.sh, docker.sh, Rakefile, Gemfile, Gemfile.lock, README.md, vendor]
+
 kramdown:
   input: GFM
   hard_wrap: false
+
 repository: baiyuNinja/baiyuNinja.github.io
+
 plugins:
   - jemoji
-  # - jekyll-sitemap
   - jekyll-redirect-from
   - jekyll-seo-tag
+
 defaults:
   - scope:
       path: ""
@@ -17,23 +21,37 @@ defaults:
     values:
       layout: post
       permalink: /blog/:year/:month/:day/:title/
+
 title: 1024bit
+
 description: 
+
 url: https://blog.1024bit.io
+
 author: baiyuNinja
-twitter:
+
 username: baiyuNinja
 
 social:
   name: baiyuNinja
-  links:
+  wechat: https://github.com/baiyuNinja
+  telegram: https://github.com/baiyuNinja
+
+info-url:
+  github: https://github.com/baiyuNinja
+  email: admin@1024bit.io
+  domain: https://github.com/baiyuNinja
 
 cdn-url:
   logo: /images/contents/cat.png
 
 string:
+  first-year: 2017
   home-name: 🐭
   index: 一路尋尋覓覓 那何曾有過放棄
-  projects: 實習 / 項目
+  projects: 實習 / 項目 / <a href="/">我的簡歷</a>
   blog: 🔍 <a href="/blog/categories.html">分類</a>
   about: Hello it's me ~
+  copyright: 1024bit.io
+
+
