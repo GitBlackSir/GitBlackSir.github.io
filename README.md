@@ -1,4 +1,4 @@
-这是我的个人博客代码仓库，是基于 Jekyll 构建的静态博客，点击[预览此主题](https://blog.1024bit.io)
+这是我的个人博客代码仓库，是基于 Jekyll 构建的静态博客，点击 [预览此主题](https://blog.1024bit.io)
 
 获取干净的构建博客源码与此主题请至 [baiyuNinja/Jekyll-GreenPure仓库](https://github.com/baiyuNinja/Jekyll-GreenPure) 且有完整的部署与修改教程
 
