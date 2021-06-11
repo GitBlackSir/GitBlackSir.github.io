@@ -272,6 +272,7 @@ DEPENDENCIES
   jekyll-compose
   jekyll-redirect-from
   kramdown (>= 2.3.0)
+  nokogiri (>= 1.11.4)
 
 BUNDLED WITH
    2.2.2
