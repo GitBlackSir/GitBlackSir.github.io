@@ -8,13 +8,16 @@ _runner() {
     --env="BUNDLE_CACHE=true" \
     --env="BUNDLE_PATH=/srv/jekyll/vendor/bundle" \
     jekyll/jekyll \
-    bash -c "gem sources -r https://rubygems.org/ && gem source -a https://gems.ruby-china.com/ && bundle config build.nokogiri --use-system-libraries && bundle install && $@"
+    bash -c "gem sources -r https://rubygems.org/ \
+    && gem source -a https://gems.ruby-china.com/ && \
+    bundle config build.nokogiri \
+    --use-system-libraries && bundle install && $@"
 }
 case "$1" in
   post)
     _runner "bundle exec jekyll post $2";
     ;;
-  server)
+  serve)
     _runner "bundle exec jekyll server --force_polling --watch -H 0.0.0.0 -P 4000";
     ;;
   test)
